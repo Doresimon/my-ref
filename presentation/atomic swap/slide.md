@@ -253,14 +253,19 @@ redeeming transaction.
 ##### 8. DONE
 
 ## 4. Another Implementation - Komodo
-
+* [https://komodoplatform.com/](https://komodoplatform.com/)
+* [komodo white paper](https://komodoplatform.com/wp-content/uploads/2018/04/2018-04-04-Komodo-White-Paper-Full.pdf)
 ## 5. Another Another Implementation - Cybex
+由于 CYBEX 不具备类似于比特币的脚本系统，因此，我们使用了**多重签名账户**来锁定发起人向参
+与者支付的 CYB（假设发起人支付 CYB），并使用脚本来锁定 UTXO 中参与者支付给发起人的比特币。
+但多重签名方法的一个缺点就是**无法实现复原与退款过程的**。 CYBEX 设定了**保证金**要求来激励
+并保障交易的完整性，从而解决了这一问题。
+
 `Bitcoin based vs Bitshare based`
 
 <img src="./cybex-bitcoin.jpg" width="100%" />
 
 > keywords: `vesting balance` `multiple signature` `hash lock` `deposit` `cut and choose`
-
 
 ## 6. TX inspect
 
@@ -273,20 +278,19 @@ redeeming transaction.
 
 `1. Alice's contract on bitcoin`
 
-<img src="./bitcoin-contract.png" width="100%" /><br/><br/>
-
+[<img src="./bitcoin-contract.png" width="100%"/>](https://www.blocktrail.com/tBTC/tx/346f4901dff1d69197850289b481f4331913126a8886861e7d5f27e837e0fe88)<br/><br/>
 
 `2. Bob's contract on decred`
 
-<img src="./decred-contract.jpg" width="100%" /><br/><br/>
+[<img src="./decred-contract.jpg" width="100%"/>](https://testnet.decred.org/tx/a51a7ebc178731016f897684e8e6fbbd65798a84d0a0bd78fe2b53b8384fd918)<br/><br/>
 
-`3. Bob's redeem on decred`
+`3. Bob's redeem on bitcoin`
 
-<img src="./decred-redeem.jpg" width="100%" /><br/><br/>
+[<img src="./bitcoin-redeem.jpg" width="100%"/>](https://www.blocktrail.com/tBTC/tx/c49e6fd0057b601dbb8856ad7b3fcb45df626696772f6901482b08df0333e5a0)<br/><br/>
 
-`4. Alice's redeem tx on bitcoin`
+`4. Alice's redeem tx on decred`
 
-<img src="./bitcoin-redeem.jpg" width="100%" /><br/><br/>
+[<img src="./decred-redeem.jpg" width="100%"/>](https://testnet.decred.org/tx/53c2e8bafb8fe36d54bbb1884141a39ea4da83db30bdf3c98ef420cdb332b0e7)<br/><br/>
 
 # FYI
 
@@ -311,3 +315,4 @@ A non-atomic trivial solution would have Alice send her Bitcoins to Bob, and the
 ### [bitcoin developer index page](https://bitcoin.org/en/development)
 
 ### [bitcoin developer reference](https://bitcoin.org/en/developer-reference)
+
