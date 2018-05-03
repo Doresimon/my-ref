@@ -12,3 +12,14 @@ In cryptography, the Boneh–Lynn–Shacham (BLS) signature scheme allows a user
 # FDH
 In cryptography, the Full Domain Hash (FDH) is an RSA-based signature scheme that follows the hash-and-sign paradigm. It is provably secure (i.e., is existentially unforgeable under adaptive chosen-message attacks) in the random oracle model. FDH involves hashing a message using a function whose image size equals the size of the RSA modulus, and then raising the result to the secret RSA exponent.
 * [wiki-FDH](https://en.wikipedia.org/wiki/Full_Domain_Hash)
+
+
+# CLS
+Camenisch-Lysyanskaya signature scheme (Crypto 2004)
+* [paper](https://eprint.iacr.org/2012/562.pdf]
+
+# ECDSA
+
+# DSA
+
+# EDDSA
