@@ -1,6 +1,6 @@
 # atomic swap research
 
-## 1. Concept / History
+## 1. Concept
 
 ### Atomic - 原子性
 
