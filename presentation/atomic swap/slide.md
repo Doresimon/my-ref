@@ -1,6 +1,6 @@
 # atomic swap research
 
-## 1. Concept / History
+## 1. Concept
 
 ### Atomic - 原子性
 
@@ -14,7 +14,20 @@ Put simply, an atomic swap (also sometimes referred to as a **cross-chain swap o
 
 > 去中心化, 无第三方的货币互换.
 
-## 2. First Implementation - Decred
+## 2. What’s the Current Status?
+Since Charlie Lee’s announcement, there have been a few other coins which have announced that they too have completed successful atomic swaps between **Vertcoin** and **Komodo** and **Decred** to **Bitcoin**. Litecoin seems to be pushing the hardest out of all of the coins to adopt atomic swaps, *but for now the technology is still in its infancy*.
+
+Right now one of the major drawbacks to the “average” user being able to complete atomic swaps currently **requires the users to have both networks completely synced**. In the case of larger blockchains such as Bitcoin, this is a big problem (Bitcoin’s blockchain is currently around 150 gigs, and growing daily).  The Komodo team has been attempting to solve this problem with the use of the Electrum server. This is could potentially allow users to interact with the blockchain without having to have download the entire chain.
+
+That being said, most projects have been very closed-mouthed about when they actually foresee atomic swaps becoming commonplace. We’re just going to have to be patient for now.
+
+But the future is bright for this technology with many exciting things to come. It is definitively something to keep your eyes on.
+
+
+## 3. First Implementation - Decred
+`Bitcoin based vs Bitcoin based`
+
+> keywords: `P2SH` `script(OP_CODE)` `Lock time` `script hash` `multi sig`
 
 On September 20, 2017 **Decred** announced via Twitter that they had successfully completed an atomic swap between Decred and Litecoin. A few days later, Charlie Lee, CEO and founder of Litecoin, also announced via Twitter that the world’s first atomic swap had successfully been completed between **Bitcoin** and **Litecoin**. This caused a wave of excitement for the crypto community; many consider this an important milestone for bringing cryptocurrencies into the mainstream and predict that it will change the world of cryptocurrency forever.
 
@@ -195,7 +208,7 @@ check everything.
 
 check everything. same as step #2
 
-##### 4. **Alice: Redeem the contract**
+##### 5. **Alice: Redeem the contract**
 
 > @input:
 > * contract script (Decred)
@@ -210,7 +223,7 @@ check everything. same as step #2
 > @public:
 > * redeem transaction
 
-##### 5. **Bob: Extract the secret**
+##### 6. **Bob: Extract the secret**
 B may watch a block explorer to see when the Decred contract output was spent and look up the
 redeeming transaction.
 
@@ -222,7 +235,7 @@ redeeming transaction.
 > @return:
 > * **secret**
 
-##### 6. **Bob: Redeem the contract**
+##### 7. **Bob: Redeem the contract**
 
 > @input:
 > * contract script (Bitcon)
@@ -237,72 +250,64 @@ redeeming transaction.
 > @public:
 > * redeem transaction
 
-##### 7. DONE
+##### 8. DONE
+
+## 4. Another Implementation - Komodo
+
+## 5. Another Another Implementation - Cybex
+`Bitcoin based vs Bitshare based`
+
+<img src="./cybex-bitcoin.jpg" width="100%" />
+
+> keywords: `vesting balance` `multiple signature` `hash lock` `deposit` `cut and choose`
 
 
+## 6. TX inspect
+
+| Description | Transaction |
+| - | - |
+| Bitcoin contract created by A | [346f4901dff1d69197850289b481f4331913126a8886861e7d5f27e837e0fe88](https://www.blocktrail.com/tBTC/tx/346f4901dff1d69197850289b481f4331913126a8886861e7d5f27e837e0fe88) |
+| Decred contract created by B | [a51a7ebc178731016f897684e8e6fbbd65798a84d0a0bd78fe2b53b8384fd918](https://testnet.decred.org/tx/a51a7ebc178731016f897684e8e6fbbd65798a84d0a0bd78fe2b53b8384fd918) |
+| A's Decred redemption | [53c2e8bafb8fe36d54bbb1884141a39ea4da83db30bdf3c98ef420cdb332b0e7](https://testnet.decred.org/tx/53c2e8bafb8fe36d54bbb1884141a39ea4da83db30bdf3c98ef420cdb332b0e7) |
+| B's Bitcoin redemption | [c49e6fd0057b601dbb8856ad7b3fcb45df626696772f6901482b08df0333e5a0](https://www.blocktrail.com/tBTC/tx/c49e6fd0057b601dbb8856ad7b3fcb45df626696772f6901482b08df0333e5a0) |
+
+`1. Alice's contract on bitcoin`
+
+<img src="./bitcoin-contract.png" width="100%" /><br/><br/>
 
 
+`2. Bob's contract on decred`
 
+<img src="./decred-contract.jpg" width="100%" /><br/><br/>
 
+`3. Bob's redeem on decred`
 
+<img src="./decred-redeem.jpg" width="100%" /><br/><br/>
 
+`4. Alice's redeem tx on bitcoin`
 
+<img src="./bitcoin-redeem.jpg" width="100%" /><br/><br/>
 
+# FYI
 
-
-
-
-
-
-
-### [Atomic swap](https://en.wikipedia.org/wiki/Atomic_swap)
+### [Atomic swap - wikipedia](https://en.wikipedia.org/wiki/Atomic_swap)
 
 An atomic swap is a proposed feature in cryptocurrencies, that allows for the exchange of one cryptocurrency for another cryptocurrency without the need for a trusted third party. In traditional cryptocurrencies a trusted third party such as an cryptocurrency exchange is necessary to perform a swap of cryptocurrencies in order to prevent one party from sending a currency without receiving a currency in return.
 
 An atomic swap system uses a hash time-locked smart contract so that a party must deliver the currency to be swapped within a specified time, or else the transaction will be cancelled. This preserves atomicity in that either the swap will take place, or no currency will be swapped.
 
-### [Atomic cross-chain trading](https://en.bitcoin.it/wiki/Atomic_cross-chain_trading)
+### [Atomic cross-chain trading - bitcoin wiki](https://en.bitcoin.it/wiki/Atomic_cross-chain_trading)
 
 The problem of atomic cross-chain trading is one where (at least) two parties, Alice and Bob, own coins in separate cryptocurrencies, and want to exchange them without having to trust a third party (centralized exchange).
 
 A non-atomic trivial solution would have Alice send her Bitcoins to Bob, and then have Bob send another cryptocurrency to Alice - but Bob has the option of going back on his end of the bargain and simply not following through with the protocol, ending up with both Bitcoins and the altcoin.
 
-### [An article - What Are Atomic Swaps?](https://www.cryptocompare.com/coins/guides/what-are-atomic-swaps/)
+### [what-are-atomic-swaps](https://www.cryptocompare.com/coins/guides/what-are-atomic-swaps/)
 
-#### What Are Atomic Swaps?
+### [why-atomic-swap-matters](https://www.investinblockchain.com/why-atomic-swap-matters/)
 
-Atomic swaps, or atomic cross-chain trading, is the exchange of one cryptocurrency to another cryptocurrency, without the need to trust a third-party. A relatively new piece of technology, atomic cross-chain trading is looking to revolutionize the way in which users transact with each other. For example, if Alice owned 5 Bitcoins but instead wanted 100 Litecoins, she would have to go through an exchange, i.e. a third-party. However, with atomic swaps, if Bob owned 100 Litecoins but instead wanted 5 Bitcoins, then Bob and Alice could make a trade. In order to prevent, for example, Alice accepting Bob’s 100 Litecoins but then failing to send over her 5 Bitcoins, atomic swaps utilizes what is known as hash time-locked contracts (HTLCs).
+### [bitcoin script wiki(with OP CODE)](https://en.bitcoin.it/wiki/Script)
 
-Hash time-locked contracts ensure that the atomic swap process is completely trustless by ensuring both fulfill the requirements of the trade. HTLCs require the recipient of a payment to acknowledge receiving payment prior to a deadline by generating a cryptographic proof of payment. Or the recipient risks losing the right to the claim the payment, therefore returning the funds back to the sender.
+### [bitcoin developer index page](https://bitcoin.org/en/development)
 
-Therefore, for a trade between Alice and Bob to take place, both must submit their transaction to their respective blockchain, Alice on the Bitcoin blockchain and Bob on the Litecoin blockchain. In order for Alice to claim the 100 Litecoins sent from Bob, she must produce a number that only she knows, used to generate a cryptographic hash, therefore providing proof of payment. Similarly, in order for Bob to claim the 5 Bitcoins that was sent from Alice, he must also provide the same number, that was used to generate the cryptographic hash.
-
-#### Requirements of Atomic Swaps
-
-As exciting as this technology is, there are some fundamental requirements for a cryptocurrency before it can successfully support atomic swaps. One such requirement is the implementation of the Lightning network.
-
-If a hash time-locked contract can be thought of as linking two blockchains together, the lightning network can be thought of as linking payment channels together. That is, for Alice and Bob to transact with each other, they must be linked through payment channels. The lightning network allows for that.
-
-In addition, for a transaction to occur between two different blockchains, it is necessary for both blockchains to share the same cryptographic hash function, such as SHA-256. This is to allow for the hash-time locked contract to function properly when it comes to the user providing the number that was generated via the hash function.
-
-#### Where We Are Now
-
-If recent news is anything to go by, the future of atomic cross-chain trading looks bright. Creator of Litecoin, Charlie Lee, successfully completed atomic swaps using Litecoin in exchange for Bitcoin, Vertcoin and Decred. With continued innovation, the desire is that the technology of atomic swaps will allow us to run decentralized exchanges that will be convenient for the average user. However, the caveat to the recent success of atomic swaps is that all those swaps required local coin daemons. What this means is, in order for the average user to perform an atomic swap between two cryptocurrencies, they would be required to download the blockchains of either currency. As you may have guessed, this process is not very practical for the average user. However, a recent successful atomic swap may have provided the solution to this problem.
-
-The Komodo team, who themselves are currently attempting to build their own decentralized exchange called BarterDEX, is ahead of the pack having successfully completed an atomic swap using an Electrum server. This is important because the Electrum server allows a user to interact with a cryptocurrency without having to download the whole blockchain. Therefore, this makes the prospect of a decentralized exchange all the more practical.
-
-To conclude, there are a plethora of decentralized exchanges that are utilizing this technology in-order to completely change the way we as users transact. Projects such as Blocknet, who are looking to create the internet of blockchains through the use of atomic swaps. Even the creation of semi-decentralized exchanges such as Lykke, who charge 0% commission on trades. It goes without saying that blockchain technology, but more specifically, atomic cross-chain trading, is a space to watch.
-
-### [History](https://www.investinblockchain.com/why-atomic-swap-matters/)
-
-On September 20, 2017 **Decred** announced via Twitter that they had successfully completed an atomic swap between Decred and Litecoin. A few days later, Charlie Lee, CEO and founder of Litecoin, also announced via Twitter that the world’s first atomic swap had successfully been completed between **Bitcoin** and **Litecoin**. This caused a wave of excitement for the crypto community; many consider this an important milestone for bringing cryptocurrencies into the mainstream and predict that it will change the world of cryptocurrency forever.
-
-## [bitcoin wiki - atomic cross chain trading](https://en.bitcoin.it/wiki/Atomic_cross-chain_trading)
-
-The problem of atomic cross-chain trading is one where (at least) two parties, Alice and Bob, own coins in separate cryptocurrencies, and want to exchange them without having to trust a third party (centralized exchange).
-
-## [bitcoin script wiki(with OP CODE)](https://en.bitcoin.it/wiki/Script)
-
-## [bitcoin developer index page](https://bitcoin.org/en/development)
-
-## [bitcoin developer reference](https://bitcoin.org/en/developer-reference)
+### [bitcoin developer reference](https://bitcoin.org/en/developer-reference)
