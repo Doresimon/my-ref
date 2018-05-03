@@ -1,4 +1,4 @@
-# atomic swap research 
+# atomic swap research
 
 ## [bitcoin wiki - atomic cross chain trading](https://en.bitcoin.it/wiki/Atomic_cross-chain_trading)
 
@@ -8,4 +8,4 @@ The problem of atomic cross-chain trading is one where (at least) two parties, A
 
 ## [bitcoin developer index page](https://bitcoin.org/en/development)
 
-## [bitcoin develoer reference](https://bitcoin.org/en/developer-reference)
+## [bitcoin developer reference](https://bitcoin.org/en/developer-reference)
