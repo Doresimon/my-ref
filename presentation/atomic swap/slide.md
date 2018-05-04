@@ -279,9 +279,13 @@ redeeming transaction.
 `1. Alice's contract on bitcoin`
 
 [<img src="./bitcoin-contract.png" width="100%"/>](https://www.blocktrail.com/tBTC/tx/346f4901dff1d69197850289b481f4331913126a8886861e7d5f27e837e0fe88)<br/><br/>
+
 `P2PKH`
+
 > `OP_DUP` `OP_HASH160` c1925e7398d325820bba18726c387e9d80047ef5 `OP_EQUALVERIFY` `OP_CHECKSIG`
+
 `P2SH`
+
 > `OP_HASH160` 2d913627b881255c417787cc255ccad9a33ce48d `OP_EQUAL`
 
 `2. Bob's contract on decred`
@@ -289,6 +293,8 @@ redeeming transaction.
 [<img src="./decred-contract.jpg" width="100%"/>](https://testnet.decred.org/tx/a51a7ebc178731016f897684e8e6fbbd65798a84d0a0bd78fe2b53b8384fd918)<br/><br/>
 
 > `OP_DUP` `OP_HASH160` 4d7c96b6d2360e48a07528332e537d81e068f8ba `OP_EQUALVERIFY` `OP_CHECKSIG`
+
+
 > `OP_HASH160` 195fb53333e61a415e9fda21bb991b38b5a4e1c3 `OP_EQUAL`
 
 `3. Bob's redeem on bitcoin`
