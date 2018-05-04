@@ -16,7 +16,7 @@ In cryptography, the Full Domain Hash (FDH) is an RSA-based signature scheme tha
 
 # CLS
 Camenisch-Lysyanskaya signature scheme (Crypto 2004)
-* [paper](https://eprint.iacr.org/2012/562.pdf]
+* [paper](https://eprint.iacr.org/2012/562.pdf)
 
 # ECDSA
 
