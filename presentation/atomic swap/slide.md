@@ -18,7 +18,7 @@ Put simply, an atomic swap (also sometimes referred to as a **cross-chain swap o
 Since Charlie Lee’s announcement, there have been a few other coins which have announced that they too have completed successful atomic swaps between **Vertcoin** and **Komodo** and **Decred** to **Bitcoin**. Litecoin seems to be pushing the hardest out of all of the coins to adopt atomic swaps, *but for now the technology is still in its infancy*.
 
 Right now one of the major drawbacks to the “average” user being able to complete atomic swaps currently **requires the users to have both networks completely synced**. In the case of larger blockchains such as Bitcoin, this is a big problem (Bitcoin’s blockchain is currently around 150 gigs, and growing daily).  The Komodo team has been attempting to solve this problem with the use of the Electrum server. This is could potentially allow users to interact with the blockchain without having to have download the entire chain.
-
+ 
 That being said, most projects have been very closed-mouthed about when they actually foresee atomic swaps becoming commonplace. We’re just going to have to be patient for now.
 
 But the future is bright for this technology with many exciting things to come. It is definitively something to keep your eyes on.
@@ -353,3 +353,4 @@ A non-atomic trivial solution would have Alice send her Bitcoins to Bob, and the
 
 ### [bitcoin developer reference](https://bitcoin.org/en/developer-reference)
 
+### [bitcoin lightning network](https://www.investinblockchain.com/lightning-network-bitcoin-scaling/)
