@@ -27,7 +27,7 @@ But the future is bright for this technology with many exciting things to come. 
 ## 3. First Implementation - Decred
 `Bitcoin based vs Bitcoin based`
 
-> keywords: `P2SH` `script(OP_CODE)` `Lock time` `script hash` `multi sig`
+> keywords: `P2SH` `script(OP_CODE)` `Lock time` `secret hash` `multi sig`
 
 On September 20, 2017 **Decred** announced via Twitter that they had successfully completed an atomic swap between Decred and Litecoin. A few days later, Charlie Lee, CEO and founder of Litecoin, also announced via Twitter that the world’s first atomic swap had successfully been completed between **Bitcoin** and **Litecoin**. This caused a wave of excitement for the crypto community; many consider this an important milestone for bringing cryptocurrencies into the mainstream and predict that it will change the world of cryptocurrency forever.
 
