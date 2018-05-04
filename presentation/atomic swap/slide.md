@@ -267,6 +267,9 @@ redeeming transaction.
 
 > keywords: `vesting balance` `multiple signature` `hash lock` `deposit` `cut and choose`
 
+## 5. Ethereum
+smart contract...
+
 ## 6. TX inspect
 
 | Description | Transaction |
@@ -302,7 +305,7 @@ redeeming transaction.
 
 redeem script
 
-> <sig> <PK> <secret> <T/F> {script}
+> `<sig>` `<PK>` `<secret>` `<T/F>` `{script}`
 
 > 3045022100f43430384ca5ecfc9ca31dd074d223836cef4801b3644c651c3a30d80fbf63b8022017dae9e7ec6f3f5ee0e0b60d146963ba85d9b31003d7f60852126f2a3549275901
 
