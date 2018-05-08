@@ -20,3 +20,7 @@ final round:
 * Twofish: 31 positive, 21 negative
 * RC6: 23 positive, 37 negative
 * MARS: 13 positive, 84 negative
+
+
+## [Diffie–Hellman key exchange](https://en.wikipedia.org/wiki/Diffie%E2%80%93Hellman_key_exchange)
+**Diffie–Hellman key exchange (DH)** is a method of securely **exchanging cryptographic keys** over a public channel and was one of the first public-key protocols as originally conceptualized by Ralph Merkle and named after Whitfield Diffie and Martin Hellman. DH is one of the earliest practical examples of public key exchange implemented within the field of cryptography.
