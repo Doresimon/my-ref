@@ -28,3 +28,9 @@ final round:
 
 ## [Elliptic-curve Diffie–Hellman (ECDH)](https://en.wikipedia.org/wiki/Elliptic-curve_Diffie%E2%80%93Hellman
 **Elliptic-curve Diffie–Hellman (ECDH)** is an anonymous key agreement protocol that allows two parties, each having an **elliptic-curve public–private key pair**, to establish a shared secret over an insecure channel. This shared secret may be directly used as a key, or to derive another key. The key, or the derived key, can then be used to encrypt subsequent communications using a symmetric-key cipher. It is a variant of the Diffie–Hellman protocol using elliptic-curve cryptography.
+
+## [ElGamal encryption](https://en.wikipedia.org/wiki/ElGamal_encryption)
+In cryptography, the **ElGamal encryption system** is an **asymmetric key encryption algorithm** for **public-key cryptography** which is **based on the Diffie–Hellman key exchange**. The system provides an additional layer of security by asymmetrically encrypting keys previously used for symmetric message encryption. It was described by Taher Elgamal in 1985. ElGamal encryption is used in the free GNU Privacy Guard software, recent versions of PGP, and other cryptosystems. The **Digital Signature Algorithm (DSA)** is a variant of the ElGamal signature scheme, which should not be confused with ElGamal encryption.
+
+## [Schnorr signature](https://en.wikipedia.org/wiki/Schnorr_signature)
+In cryptography, a **Schnorr signature** is a digital signature produced by the Schnorr signature algorithm. Its security is based on the **intractability of certain discrete logarithm problems**. The Schnorr signature is considered the simplest digital signature scheme to be provably secure in a random oracle model. It is efficient and generates short signatures. It was covered by U.S. Patent 4,995,082 which expired in February 2008.
