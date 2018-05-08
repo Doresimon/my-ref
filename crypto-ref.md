@@ -22,5 +22,9 @@ final round:
 * MARS: 13 positive, 84 negative
 
 
-## [Diffie–Hellman key exchange](https://en.wikipedia.org/wiki/Diffie%E2%80%93Hellman_key_exchange)
+## [Diffie–Hellman key exchange (DH)](https://en.wikipedia.org/wiki/Diffie%E2%80%93Hellman_key_exchange)
 **Diffie–Hellman key exchange (DH)** is a method of securely **exchanging cryptographic keys** over a public channel and was one of the first public-key protocols as originally conceptualized by Ralph Merkle and named after Whitfield Diffie and Martin Hellman. DH is one of the earliest practical examples of public key exchange implemented within the field of cryptography.
+
+
+## [Elliptic-curve Diffie–Hellman (ECDH)](https://en.wikipedia.org/wiki/Elliptic-curve_Diffie%E2%80%93Hellman
+**Elliptic-curve Diffie–Hellman (ECDH)** is an anonymous key agreement protocol that allows two parties, each having an **elliptic-curve public–private key pair**, to establish a shared secret over an insecure channel. This shared secret may be directly used as a key, or to derive another key. The key, or the derived key, can then be used to encrypt subsequent communications using a symmetric-key cipher. It is a variant of the Diffie–Hellman protocol using elliptic-curve cryptography.
