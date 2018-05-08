@@ -1,4 +1,4 @@
-# some math refreneces
+# some math refereneces
 
 ## [Modulo operation](https://en.wikipedia.org/wiki/Modulo_operation)
 In computing, the modulo operation finds the remainder after division of one number by another (sometimes called modulus).
