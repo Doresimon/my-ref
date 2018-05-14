@@ -1,0 +1,3 @@
+# zero knowledge SNARKS...
+
+## [lib snark github](https://github.com/scipr-lab/libsnark.git)
