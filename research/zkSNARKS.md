@@ -1,3 +1,16 @@
 # zero knowledge SNARKS...
 
 ## [lib snark github](https://github.com/scipr-lab/libsnark.git)
+
+## [What is zk-SNARKs? An Introduction to this Privacy Protocol](https://blockonomi.com/zk-snarks-privacy/)
+
+## [Non-interactive zero-knowledge proof](https://en.wikipedia.org/wiki/Non-interactive_zero-knowledge_proof)
+
+`! Caution - Vitalik Burterin x 3 `
+
+## [Quadratic Arithmetic Programs: from Zero to Hero - Vitalik Burterin](https://medium.com/@VitalikButerin/quadratic-arithmetic-programs-from-zero-to-hero-f6d558cea649)
+
+## [Exploring Elliptic Curve Pairings - Vitalik Burterin](https://medium.com/@VitalikButerin/exploring-elliptic-curve-pairings-c73c1864e627)
+
+## [Zk-SNARKs: Under the Hood - Vitalik Burterin](https://medium.com/@VitalikButerin/zk-snarks-under-the-hood-b33151a013f6)
+
