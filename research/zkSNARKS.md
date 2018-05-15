@@ -1,4 +1,4 @@
-# zero knowledge SNARKS...
+#  Zero-Knowledge Succinct Non-interactive ARgument of Knowledge (zkSNARKS)
 
 ## [lib snark github](https://github.com/scipr-lab/libsnark.git)
 
