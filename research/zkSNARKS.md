@@ -8,11 +8,11 @@
 
 ## `! Caution - Vitalik Burterin x 3 `
 
-### * [Quadratic Arithmetic Programs: from Zero to Hero - Vitalik Burterin](https://medium.com/@VitalikButerin/quadratic-arithmetic-programs-from-zero-to-hero-f6d558cea649)
+### 1. [Quadratic Arithmetic Programs: from Zero to Hero - Vitalik Burterin](https://medium.com/@VitalikButerin/quadratic-arithmetic-programs-from-zero-to-hero-f6d558cea649)
 
-### * [Exploring Elliptic Curve Pairings - Vitalik Burterin](https://medium.com/@VitalikButerin/exploring-elliptic-curve-pairings-c73c1864e627)
+### 2. [Exploring Elliptic Curve Pairings - Vitalik Burterin](https://medium.com/@VitalikButerin/exploring-elliptic-curve-pairings-c73c1864e627)
 
-### * [Zk-SNARKs: Under the Hood - Vitalik Burterin](https://medium.com/@VitalikButerin/zk-snarks-under-the-hood-b33151a013f6)
+### 3. [Zk-SNARKs: Under the Hood - Vitalik Burterin](https://medium.com/@VitalikButerin/zk-snarks-under-the-hood-b33151a013f6)
 
 
 ## [Arithmetic circuit complexity](https://en.wikipedia.org/wiki/Arithmetic_circuit_complexity)
