@@ -24,3 +24,7 @@ in `caml` language.
 
 ### [snarklib](https://github.com/jancarlsson/snarklib)
 a more clear implentation of zksnark changed from libsnark.
+### [snarkfront](https://github.com/jancarlsson/snarkfront)
+a C++ embedded domain specific language for zero knowledge proofs
+### [ZoKrates](https://github.com/JacobEberhardt/ZoKrates)
+a toolbox for zkSNARKS on Ethereum (`Rust`)
