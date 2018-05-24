@@ -21,3 +21,6 @@
 
 ### [snarky](https://github.com/o1-labs/snarky)
 in `caml` language. 
+
+### [snarklib](https://github.com/jancarlsson/snarklib)
+a more clear implentation of zksnark changed from libsnark.
