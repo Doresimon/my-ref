@@ -28,3 +28,9 @@ a more clear implentation of zksnark changed from libsnark.
 a C++ embedded domain specific language for zero knowledge proofs
 ### [ZoKrates](https://github.com/JacobEberhardt/ZoKrates)
 a toolbox for zkSNARKS on **Ethereum** (`Rust`). In this repo, author implent a tool to convert verification function to **smart contract** for Ethereum in solidity language. The proof can be published and every one can verify.
+
+
+
+## some knowledge from internet
+
+### [an introduction in Chinese.](https://blockchain.iethpay.com/zero-knowledge-zkSNARKs.html)
