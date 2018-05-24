@@ -6,7 +6,7 @@
 
 ### [Non-interactive zero-knowledge proof](https://en.wikipedia.org/wiki/Non-interactive_zero-knowledge_proof)
 
-## `Vitalik Burterin x 3 `
+## Vitalik Burterin's posts x 3 
 
 ### 1. [Quadratic Arithmetic Programs: from Zero to Hero - Vitalik Burterin](https://medium.com/@VitalikButerin/quadratic-arithmetic-programs-from-zero-to-hero-f6d558cea649)
 
@@ -17,7 +17,7 @@
 
 ## [Arithmetic circuit complexity](https://en.wikipedia.org/wiki/Arithmetic_circuit_complexity)
 
-## [tool chains around libSNARK]
+## tool chains around libSNARK
 
 ### [snarky](https://github.com/o1-labs/snarky)
 in `caml` language. 
