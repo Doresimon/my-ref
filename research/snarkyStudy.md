@@ -16,13 +16,13 @@
    - Each voter will also publish that commitment **h_i**.
    - The government will compute the result of the election, either pepperoni or mushroom.
    - The government will prove in zero knowledge the following statement:
-      Exposing the commitments **h_1, \dots, h_n** and the winner **w**,
-      there exist **(x_1, v_1), \dots, (x_n, v_n)** such that
+      Exposing the commitments **h_1, ... , h_n** and the winner **w**,
+      there exist **(x_1, v_1), ... , (x_n, v_n)** such that
       - For each **i**, **H(x_i, v_i) = h_i**.
       - if the number of votes for Pepperoni is greater than n / 2, **w** is Pepperoni,
         otherwise, **w** is Mushroom.
    - Finally each voter verifies the government's proof against the claimed winner **w**
-     and the commitments **h_1, \dots, h_n**.
+     and the commitments **h_1, ... , h_n**.
     
    In plain English, the government will prove "I know votes corresponding to the commitments **h_i**
    such that taking the majority of those votes results in winner **w**".
