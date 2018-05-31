@@ -11,5 +11,7 @@ binary input:
 R1P input:
 
 > (*) sum = sum(input[i]) - n
+
 > (1) sum * result = 0
+
 > (2) sum * sumInverse = 1 - result
