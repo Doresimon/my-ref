@@ -1,10 +1,12 @@
 # a short introduction for `R1CS`
 
 ## 1. process of zkSNARK
+
 ![function to zksnark](img/process.png)
 
 
 * **Computation**
+
       function add(x,y){
         z = x + y
         return z
@@ -16,6 +18,7 @@
       }
 
 * **Algebraic Circuit**
+
       ## `add` doesn't need to change.
       ## solution:: [1, x, y, z]
       function add(x,y){
