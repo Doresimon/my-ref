@@ -89,7 +89,7 @@ a toolbox for zkSNARKS on **Ethereum** (`Rust`). In this repo, author implent a 
 3. Xor
 > out = in1 ^ in2
 
-> `2 * in1` * `in2` = `in1` + `in2` - `out`
+> 2 * `in1` * `in2` = `in1` + `in2` - `out`
 
 4. Split(Unpack)
 > out[i] = BitOf(in, i)
