@@ -1,6 +1,8 @@
 # a short introduction for `R1CS`
 
-## 1. process of zkSNARK
+## 1. Simple Process
+
+a picture from **Vitarlik**
 
 ![function to zksnark](img/process.png)
 
@@ -46,4 +48,14 @@
 
   **gate**
 
-  for function __poly()__, there are `add` and `mul` gates, each gate can have __many inputs__ but only __1 output__.
+  for function __poly()__, there are `add` and `mul` gates, each gate can have __many inputs__ but only __1 output__. (for now we only have basic gates.)
+
+* **R1CS**
+
+  * What is R1CS
+
+    Range 1 Constraint System.
+
+    `<a, b, c>`
+
+    `<s . a> * <s . b> = <s . c>`
