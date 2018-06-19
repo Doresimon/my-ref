@@ -125,82 +125,82 @@ a picture from **Vitarlik**
         ![Lagrange's interpolation](https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Lagrange_polynomial.svg/440px-Lagrange_polynomial.svg.png)
 
         for matrix __A__, choose first column __[0, 2, 5, 3]__:
-          A =
-          1: [0, 1, 0, 0, 0, 0]
-          2: [2, 0, 0, 0, 0, 0]
-          3: [5, 0, 0, 0, 0, 0]
-          4: [3, 0, 0, 1, 1, 0]
+            A =
+            1: [0, 1, 0, 0, 0, 0]
+            2: [2, 0, 0, 0, 0, 0]
+            3: [5, 0, 0, 0, 0, 0]
+            4: [3, 0, 0, 1, 1, 0]
 
         We need to construct a polynomial __f(x)__ which satisfies:
-          f(1) = 0, f(2) = 2, f(3) = 5, f(4) = 3
-          also
-          it cross points (1,0) (2,3) (3,5) (4,3)
+            f(1) = 0, f(2) = 2, f(3) = 5, f(4) = 3
+            also
+            it cross points (1,0) (2,3) (3,5) (4,3)
 
         This is a little hard. We use __decomposition__: Let __f(x) = f1(x) + f2(x) + f3(x) + f4(x)__, where:
-          f1(1) = 0, f1(2) = 0, f1(3) = 0, f1(4) = 0
-          f2(1) = 0, f2(2) = 2, f2(3) = 0, f2(4) = 0
-          f3(1) = 0, f3(2) = 0, f3(3) = 5, f3(4) = 0
-          f4(1) = 0, f4(2) = 0, f4(3) = 0, f4(4) = 3
-          except the diagonal, all equal to __ZERO__
+            f1(1) = 0, f1(2) = 0, f1(3) = 0, f1(4) = 0
+            f2(1) = 0, f2(2) = 2, f2(3) = 0, f2(4) = 0
+            f3(1) = 0, f3(2) = 0, f3(3) = 5, f3(4) = 0
+            f4(1) = 0, f4(2) = 0, f4(3) = 0, f4(4) = 3
+            except the diagonal, all equal to __ZERO__
 
         Now __f1234(x)__ can be constructed easily with
-          f1(x) = (x-2)(x-3)(x-4)/(1-2)(1-3)(1-4) * 0 = 0
-          f2(x) = (x-1)(x-3)(x-4)/(2-1)(2-3)(2-4) * 2 = -12 + 19 * x + -8 * x^2 +  1 * x^3
-          f3(x) = (x-1)(x-2)(x-4)/(3-1)(3-2)(3-4) * 5 = 20 + -35 * x + 35/2 * x^2 + -5/2 * x^3
-          f4(x) = (x-1)(x-2)(x-3)/(4-1)(4-2)(4-3) * 3 = -3 + 11/2 * x + -3 * x^2 + 1/2 * x^3   
+            f1(x) = (x-2)(x-3)(x-4)/(1-2)(1-3)(1-4) * 0 = 0
+            f2(x) = (x-1)(x-3)(x-4)/(2-1)(2-3)(2-4) * 2 = -12 + 19 * x + -8 * x^2 +  1 * x^3
+            f3(x) = (x-1)(x-2)(x-4)/(3-1)(3-2)(3-4) * 5 = 20 + -35 * x + 35/2 * x^2 + -5/2 * x^3
+            f4(x) = (x-1)(x-2)(x-3)/(4-1)(4-2)(4-3) * 3 = -3 + 11/2 * x + -3 * x^2 + 1/2 * x^3   
 
         Then add them together, we get __f(x)__
-          f(x) = 5 + -21/2 * x + 13/2 * x^2 + -1 * x^3
+            f(x) = 5 + -21/2 * x + 13/2 * x^2 + -1 * x^3
 
         Then we get first row of __Aq__, extracting coefficients in ascending order:
-          [5, -21/2, 13/2, -1]
+            [5, -21/2, 13/2, -1]
 
         Use same operating process for column 2,3,4,5,6 of Matrix __A__, getting row 2,3,4,5,6 of __Aq__.
 
-          Aq =
-          Aq1: [5, -21/2, 13/2, -1]
-          Aq2: [...]
-          Aq3: [...]
-          Aq4: [...]
-          Aq5: [...]
-          Aq6: [...]
+            Aq =
+            Aq1: [5, -21/2, 13/2, -1]
+            Aq2: [...]
+            Aq3: [...]
+            Aq4: [...]
+            Aq5: [...]
+            Aq6: [...]
 
         And __Bq Cq__ . So __A__ is 4x6 and then __Aq__ is 6x4.
 
         Like
-          A·s * B·s = C·s
+            A·s * B·s = C·s
         We use
-          Aq·s * Bq·s - Cq·s
-          = [xx, xx, xx, xx] * [xx, xx, xx, xx] - [xx, xx, xx, xx]
-          = [xxx, xxx, xxx, xxx, xxx, xxx, xxx] -> R
-          "O(3) * O(3) - O(3) = O(6)"
+            Aq·s * Bq·s - Cq·s
+            = [xx, xx, xx, xx] * [xx, xx, xx, xx] - [xx, xx, xx, xx]
+            = [xxx, xxx, xxx, xxx, xxx, xxx, xxx] -> R
+            "O(3) * O(3) - O(3) = O(6)"
         For x = 1, 2, 3, 4
-          R(x) = 0
+            R(x) = 0
 
         Now we use Zq(x) = (x-1)(x-2)(x-3)(x-4) and construct an equation:
 
-          R(x) = H * Zq(x)
+            R(x) = H * Zq(x)
 
-          Zq(x) = (x-1)(x-2)(x-3)(x-4) = 24 + -50 * x + 35 * x^2 + -10 * x^3 + 1 * x^4
+            Zq(x) = (x-1)(x-2)(x-3)(x-4) = 24 + -50 * x + 35 * x^2 + -10 * x^3 + 1 * x^4
 
-          Zq = [24, -50, 35, -10, 1]
+            Zq = [24, -50, 35, -10, 1]
 
-          this is for purpose that when x = 1, 2, 3, 4, equation R(x) = H * Zq(x) holds.
+            this is for purpose that when x = 1, 2, 3, 4, equation R(x) = H * Zq(x) holds.
 
-          calculate H = R / Zq, division has no remainder, so it's easy to compute.
+            calculate H = R / Zq, division has no remainder, so it's easy to compute.
 
         Soooooo, QAP is finished, including
-          Aq : 6x4 Matrix
-          Bq : 6x4 Matrix
-          Cq : 6x4 Matrix
-          Zq : 1x4 Vector
-          H :  1x3 Vector
+            Aq : 6x4 Matrix
+            Bq : 6x4 Matrix
+            Cq : 6x4 Matrix
+            Zq : 1x4 Vector
+            H :  1x3 Vector
         We call it __QAP instance__.
 
         Notice that every number above will be substituted with __finite field elements__, which is used in Crypto.
 
         __Usage::__ if someone give you a solution `s`, check:
-          Aq·s * Bq·s - Cq·s ?= H * Zq
+            Aq·s * Bq·s - Cq·s ?= H * Zq
 
 
 ## 2. Zero Knowledge
