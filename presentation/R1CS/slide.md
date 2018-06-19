@@ -211,9 +211,13 @@ a picture from **Vitarlik**
   The paper [PGHR13](https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/pinocchio.pdf) has a complete scheme. Following pictures are simple reviews.
 
   ![PGHR-1](img/PGHR-1.png)
+
   ![PGHR-2](img/PGHR-2.png)
+
   ![PGHR-3](img/PGHR-3.png)
+
   ![PGHR-4](img/PGHR-4.png)
+
   ![PGHR-5](img/PGHR-5.png)
 
   With Ellpitic Curve and amazing Pairing Theory, everything can be done easily.
@@ -227,6 +231,74 @@ capture from [https://blockchain.iethpay.com/zero-knowledge-zkSNARKs.html](https
 ![img](https://blockchain.iethpay.com/images/2017/12/%E9%9B%B6%E7%9F%A5%E8%AF%86%E8%AF%81%E6%98%8E%E5%88%86%E4%BA%AB_%E5%8C%97%E4%BA%AC_12.27.008.jpeg)
 ![img](https://blockchain.iethpay.com/images/2017/12/%E9%9B%B6%E7%9F%A5%E8%AF%86%E8%AF%81%E6%98%8E%E5%88%86%E4%BA%AB_%E5%8C%97%E4%BA%AC_12.27.009.jpeg)
 
+## 4. Current Tools
+
+#### SNARK
+
+1. [__scipr-lab__ - libsnark](https://github.com/scipr-lab/libsnark)
+
+2. [__akosba__ - jsnark](https://github.com/akosba/jsnark)
+
+3. [__akosba__ - xjsnark](https://github.com/akosba/xjsnark)
+
+    "a high-level framework for developing applications for zk-SNARKs. xJsnark aims at bridging the gap between high-level programming and performance. xJsnark's front end is currently developed as a java extension on top of Jetbrains MPS V 3.3.5. __At this point, xJsnark produces circuits using the same format as jsnark, which are transformed to r1cs constraints using the jsnark-libsnark interface.__"
+
+    [paper link](http://www.cs.umd.edu/~akosba/papers/xjsnark.pdf)
+
+    __Good:__
+
+      > if .. else ..
+
+      > for ..
+
+      > children function, use codes repeatly
+
+      > almost every commonly used grammar
+      >> `+ - * /`
+      >>
+      >> `>> << | & ^ ~`
+
+      > wire operation
+      >> `EQ NEQ` - check if wires are equal
+      >>
+      >> `NOT AND OR`
+
+      > many predefined number types
+      >> `uint_size` size can be a number for the type's bit length
+
+      > do a great optimization for circuit, it reduce sha256's gate quantity from 34844 to 26052 with arithmetic minimization
+
+    __Bad:__
+
+      > DSL - Domain Specific Language
+      >> need to use `MPS` IDE
+      >>
+      >> need time to learn its new grammar
+
+      > this tool only generate circuit file: `xxx.arith`. need to use jsnark interface to run libsnark with `xxx.arith` to generate QAP, pk, vk, proof ... It only generate a optimized R1CS.
+
+      > functions still need to be wrote by programmer.
+
+    `SHA256`
+
+        Circuit file size:  1.4 MB
+        Number of total mul gates before arithmetic minimization =  34844
+        Number of total mul gates after  arithmetic minimization =  26052
+        Total Savings due to arithmetic minimizations = 8792
+
+
+
+4. [__o1-labs__ - snarky](https://github.com/o1-labs/snarky)
+
+5. [__jancarlsson__ - snarklib](https://github.com/jancarlsson/snarklib)
+
+6. [__jancarlsson__ - snarkfront](https://github.com/jancarlsson/snarkfront)
+
+7. [__JacobEberhardt__ - ZoKrates](https://github.com/JacobEberhardt/ZoKrates)
+
+#### STARK
+
+8. [__elibensasson__ - libSTARK](https://github.com/elibensasson/libSTARK)
 
 
 

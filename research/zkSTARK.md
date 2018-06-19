@@ -14,9 +14,9 @@
 * STIK and STARK (without zk)
 
 2. 2 example
-* DNA Profile match: 
+* DNA Profile match:
 
-Use AES128DMHashc function. Need to construct eveything about hash function, this demo is just for academic use... 
+Use AES128DMHashc function. Need to construct eveything about hash function, this demo is just for academic use...
 
 * TinyRAM little program.
 
