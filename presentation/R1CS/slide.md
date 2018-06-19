@@ -251,7 +251,72 @@ capture from [https://blockchain.iethpay.com/zero-knowledge-zkSNARKs.html](https
 
 1. [__scipr-lab__ - libsnark](https://github.com/scipr-lab/libsnark)
 
+    a godlike Repository......
+
+    a bunch of Publications......
+
+    [scipr-lab official website - Succinct Computational Integrity and Privacy Research](http://www.scipr-lab.org/)
+
+    __Official Documentation:__
+
+    More precisely, libsnark provides a C++ implementation of a preprocessing zk-SNARK for an NP-complete language similar to arithmetic circuit satisfiability. The libary also includes functionality for constructing instances of the NP-language, "bottom up", using gagdet classes.
+
 2. [__akosba__ - jsnark](https://github.com/akosba/jsnark)
+
+    __Official Documentation:__
+
+    "a Java library for building circuits for preprocessing zk-SNARKs. The library uses libsnark as a backend, and can integrate circuits produced by the Pinocchio compiler when needed by the programmer."
+
+    The code consists of two main parts:
+
+    > __JsnarkCircuitBuilder:__ A Java project that has a Gadget library for building/augmenting circuits. (Check the src/examples package)
+
+    > __libsnark/src/interface:__ A C++ interface to libsnark which accepts circuits produced by either the circuit builder or by Pinocchio's compiler directly.
+
+    __Good:__
+
+    > compose libsnark's `variable` `linear item` `linear combination` to `Wire` type.
+
+    > output 2 files:
+    >> `xx.arith` for circuit in R1CS format
+    >>
+    >> `xx.in` for solution input, corresponding to xx.arith with wire's id.
+
+    __Bad:__
+
+    > `xx.arith` and `xx.in` are produced at the same run.
+
+    > need to implement Custom CircuitGenerator class and Override `buildCircuit()` `generateSampleInput()`
+
+    __Process:__
+    > `generateCircuit()`: generates the arithmetic circuit and the constraints.
+
+    > `evalCircuit()`: evaluates the circuit.
+
+    > `prepFiles()`: This produces two files: <circuit name>.arith and <circuit name>.in. The first file specifies the arithemtic circuit in a way that is similar to how Pinocchio outputs arithmetic circuits, but with other kinds of instructions, like: xor, or, pack and assert. The second file outputs a file containing the values for the input and prover free witness wires. This step must be done after calling evalCircuit() as some witness values are computed during that step.
+
+    > `runLibsnark()`: This runs the libsnark interface with the two files produced in the last step. This can also be done manually outside the circuit if needed.
+
+    __Example:__
+
+    `SHA256` `input="abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijkl"` 64*8 = 512 bits
+
+        Total Number of Constraints :  44780
+
+        * G1 elements in PK: 315933
+        * Non-zero G1 elements in PK: 240466
+        * G2 elements in PK: 44463
+        * Non-zero G2 elements in PK: 13650
+        * PK size in bits: 73402616 ~= 8.75 MB
+
+        * G1 elements in VK: 75
+        * G2 elements in VK: 5
+        * VK size in bits: 26597 ~= 3.25 KB
+
+        * G1 elements in proof: 7
+        * G2 elements in proof: 1
+        * Proof size in bits: 2294
+
 
 3. [__akosba__ - xjsnark](https://github.com/akosba/xjsnark)
 
