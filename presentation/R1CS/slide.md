@@ -261,6 +261,18 @@ capture from [https://blockchain.iethpay.com/zero-knowledge-zkSNARKs.html](https
 
     More precisely, libsnark provides a C++ implementation of a preprocessing zk-SNARK for an NP-complete language similar to arithmetic circuit satisfiability. The libary also includes functionality for constructing instances of the NP-language, "bottom up", using gagdet classes.
 
+    __Good:__
+
+    `gadgetlib1` has many components:
+
+      curves, hash(sha256, knapsack), merkle tree,  basic gadgets.
+
+    `gadgetlib2` has good remarks for readers.
+
+    __Usage:__
+
+    mainly use its `r1cs_ppzksnark`. See [Zcash's source codes](https://github.com/zcash/zcash/tree/master/src/snark).
+
 2. [__akosba__ - jsnark](https://github.com/akosba/jsnark)
 
     __Official Documentation:__
@@ -365,19 +377,104 @@ capture from [https://blockchain.iethpay.com/zero-knowledge-zkSNARKs.html](https
         Number of total mul gates after  arithmetic minimization =  26052
         Total Savings due to arithmetic minimizations = 8792
 
+        * G1 elements in PK: 188021
+        * Non-zero G1 elements in PK: 144597
+        * G2 elements in PK: 25875
+        * Non-zero G2 elements in PK: 7749
+        * PK size in bits: 43814876 ~= 5.22 MB
+
+        * G1 elements in VK: 11
+        * G2 elements in VK: 5
+        * VK size in bits: 6181 ~= 0.75 KB
+
+        * G1 elements in proof: 7
+        * G2 elements in proof: 1
+        * Proof size in bits: 2294
+
+
 
 
 4. [__o1-labs__ - snarky](https://github.com/o1-labs/snarky)
 
+  `snarky` is an `OCaml` front-end for writing R1CS SNARKs. It is modular over the backend SNARK library, and comes with backends from libsnark.
+
 5. [__jancarlsson__ - snarklib](https://github.com/jancarlsson/snarklib)
+
+  __Author:__
+
+  The `snarklib template library` is a complete redesign of the libsnark library developed by the SCIPR Lab and contributors. All code is new except for x86-64 assembly language taken directly from libsnark. The theoretical ideas and algorithms are from libsnark and associated academic/industrial research. This project is about software engineering only. The theory and algorithms in snarklib are the creative work of others, not this author.
+
+  The author of snarklib has no relationship with the SCIPR Lab project or affiliated contributors.
 
 6. [__jancarlsson__ - snarkfront](https://github.com/jancarlsson/snarkfront)
 
+  A C++ embedded domain specific language for zero knowledge proofs.
+
+  Evolve from `snarklib`.
+
+
+
 7. [__JacobEberhardt__ - ZoKrates](https://github.com/JacobEberhardt/ZoKrates)
+
+  "Zokrates is a toolbox for zkSNARKs on Ethereum."
+
+  * use docker
+  * use *.code file to write functions, like python
+  * generate solidity smart contract for verifier.
+
+  `SHA256`
+
+        Number of constraints: 932609
+
+        * G1 elements in PK: 7184
+        * Non-zero G1 elements in PK: 5644
+        * G2 elements in PK: 1026
+        * Non-zero G2 elements in PK: 514
+        * PK size in bits: 1832174 ~= 0.22 MB
+
+        * G1 elements in VK: 258
+        * G2 elements in VK: 5
+        * VK size in bits: 84974 ~= 10.37 KB
+
+        Verification key in Solidity compliant format:
+        {
+      		vk.A = Pairing.G2Point([0x216e5a7c82764695b058b18e00adf4348997369c39a34ca51d593e0b0ab391cf, 0x21b9a8987a68e8fe303fdd890f5ccf57d2f52ab69c6b8ab71e2d2570774be86a], [0x65f8fc5371b757b6a5dae12a704676bc5c0146451fae85e2c76ed0bca7ec32e, 0x155becfe1c656a63aa0fc84b336af8da64cc4561fae5351f3befc3c9f2a1a307]);
+      		vk.B = Pairing.G1Point(0xe65a98ea5f47122913b6c976929e1ea914076d31884a96f91cad9d6dc53387f, 0x91a96d8ee3922523f59c15102985e7d61fa1fc11c54e2dc330dbcc9612be26d);
+      		vk.C = Pairing.G2Point([0x5d45730253b742adf970455f1abb7e0b000b33df325861930c72037534bca25, 0x2d295aca166786a7d17531309123cfdfec5f61c440ffb0764ff15922f46608a4], [0x2b22f521f6ff2c109a73ff81218acce62e47cfccd1a13e31bb79fdb19dadcdb6, 0x1114023a18c8beb61af792d9047fd4b9b4bf4dec3d7ba8ace6c3203e1d17b5d7]);
+      		vk.gamma = Pairing.G2Point([0x18528b93eededaaaf364a52fbae7e0f6e299e7ba3e05bc1dcdac30f319537bca, 0xd0db77e25384aae4816548562ead1b0daf284246a78467370f5eb1c5a1b2127], [0x59f6f26330ea308e7bf0a874ef174632f43febddda08913e88b92462edff694, 0x1c5fb7f2c109765703ccc041de1ebc1faf36b3944aa3c1ace984dba2b95c71d7]);
+      		vk.gammaBeta1 = Pairing.G1Point(0x1177e9f12bd304f12c8b7568ff60edef32bd99ff9659305e2bef639f877b472a, 0x2a0f869cc8908e26c67faf433e025d7913de0e2e3386af1d5bd6016aa4aae6fb);
+      		vk.gammaBeta2 = Pairing.G2Point([0x9e8d77ed07e592be0a0fad2a6e8c08d62f38c7de602f2ad344552042c2effe5, 0x1ad0dfeea89377d6d36174082b2ac4ad2850495b881c2fd8c35e423781b0cedd], [0x2cab2785e758cb811f6b1b7c52cf4664f29013c7ff3e1f4eb73bcfd845482427, 0x194fe047dc68c7d29b44882e5e44357fec1846eac775dadcc852f65c832caba3]);
+      		vk.Z = Pairing.G2Point([0x20bff22103d781dbbf110c846fd9403cc84a866a8376257d22bdbb7d4b616682, 0x1d8a04a003aee469e411330c35310a3f0b0243318c6a31219a2339e4a2829071], [0x5a4cae94991073803bd9e95d79ff9e72806fffdeba715d1a01e55b9aacd03d1, 0xc337eda7d36f8583ac128ab226518b233f7c50fda9511f3b62fd8e2f6768085]);
+      		vk.IC = new Pairing.G1Point[](257);
+      		vk.IC[0] = Pairing.G1Point(0x243f5972b6f7af12e3fe9ed15ec97747f32917f5aa6d932d2117bc96359cadb2, 0x4b7d0e15697af7d868b8a3c650e72b1632c456dcf42a3542611f0cfb564a117);
+      		vk.IC[1] = Pairing.G1Point(0x17315f71b55d4d5fa2887f9e4560ef74b5ce7897c54eac988b6f988120b31dc3, 0x251285ccec4c3ca8acb5962366ae1f28e0c31dcd14ecebb08f8ebd87d9bf716a);
+      		vk.IC[2] = Pairing.G1Point(0x2564e423ebdbf9df5e8bbcfd43c1e3c3fbf14e8b930e241d6849e37aefddb8e9, 0xcb2c926af2d372a5630285fe5dc047473235eec7051b02e64c9a11257c8eedf);
+              ...
+      		vk.IC[254] = Pairing.G1Point(0x2c090e1cae2770630f9c251468fbf9904d77e3ed9bae25c380310813f80f3540, 0x227fa609a591d78b5840d29b988f67c018ff6e901aab68ba266d2e4a6748c8a6);
+      		vk.IC[255] = Pairing.G1Point(0x1f5fc3668a1fffd86bfc2c78ff2807f4be726dc1a46bae1d0f9c51e5f3cbc2c, 0x116969967e47160bfba781e26129b93bc779ebbf32ba220103d04770ad2347e);
+      		vk.IC[256] = Pairing.G1Point(0x19875afc3d27b638c558932386ac6a471fed41b98bae8b5f60c8e5f28331d712, 0x12d676eae104ac560e6d1c718ccace977183b64bbace5d4f4e86f7895aa99d3e);
+        }
+
+        * G1 elements in proof: 7
+        * G2 elements in proof: 1
+        * Proof size in bits: 2294
+        Proof:
+        A = 0x1e536419b485478cee59b56a450c1792d63cf76e677a970622324395b912c58e, 0x23fe14a886119a7d07fa67d77e2ff3697eb76c02a1d0087ebf7ba18d8d2a345d
+        A_p = 0xba79e6c1167a3d92e8891db4446156e5cae25e151303c6432f2b14b74cd41cb, 0x2f0e5277bcd950cfedd27a5cf90caf7e47d8433f901c3cd6460e938c6efc3fb9
+        B = [0x2b8934ed3993625f918dadcc275686f8658b86f7ace2b87143fa4c08c48e6eb, 0x225baac932aa658c2bc1df3e6af2dddac9da50fa5535666123ff939b343419b0], [0x2279b837883c7bf2d657a90d30775d0d2030b13be29e84004c9fc7274b73395f, 0x1842e86fcecddd9bcc17699a32505b278318573ba16ddf6991e7b7af536f6bc0]
+        B_p = 0xf47c6f2aa8224e6a55269484d96c68716e679bd65d4d506cfab5742ba5b5ce9, 0x26341f1e9b56f562af797a66e5a2fcbb2e20a77203af62ea6742e84907daaa8
+        C = 0x22512d3dc8ebe12ccb56a41b9cd9d6078c6555b5f6263c82a379304d24fce584, 0x14be51dbc3c8d5211c3d946be5cd88bcff4a958bbd32fa23068fe9627b1cc9af
+        C_p = 0x15097ca8cece18c0727c724c35bbc61314cb659ee5b0d3b418a0dbaaeefbabae, 0x206b011a1c10ef1713afb220ce5eddd473d1f3d34baf1efe40cb76b34bf63043
+        H = 0x7662dbfd890ee7607ce75d7f035c0d055d84dcb209625f59f4ba7640d67c463, 0x13114a255ff69f2aa4d7cff95d87a366d19b5763f518334a6c3ae3946fa6c140
+        K = 0xb5fdc28f26f8a094b98791656c69e1a90db201c88d1dd987701662bf747ff3b, 0x2283b0e80e73f099597b011860a603db77f9ab30351dfa7162e871799f42a9d5
+
+
 
 #### STARK
 
 8. [__elibensasson__ - libSTARK](https://github.com/elibensasson/libSTARK)
+
+  It has example on  DPM (DNA fingerprint blacklist).
 
 
 
