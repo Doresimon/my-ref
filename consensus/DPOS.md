@@ -17,6 +17,8 @@
 
 * [__Bitshare__ - Graphene Technical Documentation](http://docs.bitshares.org/)
 
+* [__Bitshare__ - DPOS](https://bitshares.org/technology/delegated-proof-of-stake-consensus/)
+
 * [__Bitshare__ - Graphene's Feature](https://bitshares.org/technology/industrial-performance-and-scalability/)
 
 * [__Bitshare__ - doxygen](https://bitshares.org/doxygen/)
