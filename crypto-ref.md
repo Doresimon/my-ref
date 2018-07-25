@@ -34,3 +34,10 @@ In cryptography, the **ElGamal encryption system** is an **asymmetric key encryp
 
 ## [Schnorr signature](https://en.wikipedia.org/wiki/Schnorr_signature)
 In cryptography, a **Schnorr signature** is a digital signature produced by the Schnorr signature algorithm. Its security is based on the **intractability of certain discrete logarithm problems**. The Schnorr signature is considered the simplest digital signature scheme to be provably secure in a random oracle model. It is efficient and generates short signatures. It was covered by U.S. Patent 4,995,082 which expired in February 2008.
+
+
+
+
+## [HyperElliptic](http://hyperelliptic.org/)
+
+A useful website of elliptic. 
