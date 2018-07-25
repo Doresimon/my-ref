@@ -41,3 +41,8 @@ In cryptography, a **Schnorr signature** is a digital signature produced by the 
 ## [HyperElliptic](http://hyperelliptic.org/)
 
 A useful website of elliptic. 
+
+
+## [Wei Dai](http://www.weidai.com/)
+
+## [Crypto ++](https://www.cryptopp.com/)
