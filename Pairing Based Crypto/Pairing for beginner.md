@@ -1,4 +1,4 @@
-# a guide for Pairing
+# A guide for Pairing
 
 ## basic concept
 
@@ -17,7 +17,7 @@
 
 ### `affine space`
 
-- equation: `E: y^2 = x^3 + a*x + b`
+- equation: `E: y^2 = x^3 + a·x + b`
 
     (x, y)
 
@@ -27,9 +27,12 @@
 
 ### `projective space`
 
-- equation: `Ep: Y^2*Z = X^3 + a*X*Z^2 + b*Z^3`
+- equation: `Ep: Y^2·Z = X^3 + a·X·Z^2 + b·Z^3`
 
     (X, Y, Z)
+
+    The set of points (X, Y, Z) with coordinates in K that satisfies equation is called
+    the projective closure of E. 
 
 - conversion:
 
@@ -52,13 +55,13 @@
 
     y = Y/Z^3
 
-    Y^2 = X^3 + 4*X*Z^4 − Z^6
+    Y^2 = X^3 + 4·X·Z^4 − Z^6
 
 ### `Jacob-quartic curve`
 
 - equation:
 
-    J : v^2 = a*u^4 + d*u^2 + 1
+    J : v^2 = a·u^4 + d·u^2 + 1
 
 - conversion:
 
@@ -82,13 +85,41 @@
 
 `Edwards curves`
 
+Edwards curves are supported using both regular and twisted Edwards format:-
+
+A·x^2+y^2=1+B·x^2y^2
+
+where A=1 or A=−1.
+
 `Hessian curves`
 
 `Montgoemry curves`
 
+Montgomery curves are represented as:-
+
+y^2=x^3+A·x^2+x
+
+where A must be small.
+
+### `infinity filed and extensions`
+
+    Fp: 0, 1, 2 ... P-1
+    Fp^2(i): Fp(1)xFp(i),  1 + i^2 = 0      --->    i = sqrt(-1)
+    Fp^3(u): Fp(u)      ,  u3 + u + 4 = 0, 
+    Fp^4(j): Fp(1)xFp(j),  1 - i + j^2 = 0  --->    j = sqrt(-1+i) = sqrt(-1+sqrt(-1))
+
+
+    `Extension Field arithmetic`
+
+    To support cryptographic pairings we will need support for extension fields. We use a towering of extensions, from from Fp to Fp2 to Fp4 to Fp12 as required for BN curves
+    @barreto−naehrig
+    . An element of the quadratic extension field will be represented as f=a+ib, where i is the square root of the quadratic non-residue -1. To add, subtract and multiply them we use the obvious methods.
+
+    However for negation we can construct −f=−a−ib as b−(a+b)+i.(a−(a+b)) which requires only one base field negation. A similar idea can be used recursively for higher order extensions, so that only one base field negation is ever required.
+
 ### Elliptic Curve computation
 
-E(Fp): y^2 = x^3 + ax +b
+E(Fp): y^2 = x^3 + a·x +b
 
 `M` Multiplication
 
@@ -135,12 +166,12 @@ Example:
 ```php
 # suppose
 P, Q, R, S ∈ E(_Fq)
-D1 = 2(P ) − 3(Q)
+D1 = 2(P) − 3(Q)
 D2 = 3(Q) + (R) − (S)
 # then
 Deg(D1) = 2 − 3 = −1
 Deg(D2) = 3 + 1 − 1 = 3
-D1 + D2 = 2(P )+(R)−(S)
+D1 + D2 = 2(P)+(R)−(S)
 Deg(D1 + D2) = Deg(D1) + Deg(D2) = 2
 supp(D1) = {P, Q}
 supp(D2) = {Q, R, S}
@@ -198,7 +229,7 @@ our discussion then, is the entire group of points of order r on E(_Fq), called 
 
 `E[r] ∼= Zr × Zr.` (4.2)
 
-`#E[r] = r^2` -  `r^2 = (r+1)*(r-1) + 1`
+`#E[r] = r^2` -  `r^2 = (r+1)·(r-1) + 1`
 
 `(r+1)` extension group E(Fp^k)   ?????????
 
@@ -209,13 +240,53 @@ our discussion then, is the entire group of points of order r on E(_Fq), called 
 Equation (4.2) implies that (for prime r)
 the r-torsion consists of r+1 cyclic subgroups of order r.
 
+We point out
+that although O is in the 3-torsion, it does not have order 3, but rather order 1
+– points of order d | r are automatically included in the r-torsion
+
+Take any two points P, Q ∈ E[3] \ {O} 
+that are not in the same subgroup, neither of which
+are O. The translation of Equation (4.2) is that any other point in E[3] can be
+obtained as [i]P + [j]Q, i, j ∈ {0, 1, 2}
+
 <img src='./img/4c16fde1229ccb5a994823204404c95.png'>
+
 <img src='./img/13e8cb46f5c7d4e33a6eb6cafa2ab26.png'>
+
 <img src='./img/40dcb8e4c0f3fcc4de39a3b2a55b300.png'>
 
+#### trace map
 
+Namely, the trace map of the point P = (x, y) ∈ E(Fq^k) is defined as
+
+<img src='./img/e173eca4115b658502f3438215a1de8.png'>
+
+Galois theory tells us that Tr : E(Fq^k) → E(Fq), so when r||k#E(Fq) (which will
+always be the case from now on), then this map, which is actually a group homomorphism, sends all torsion points into one subgroup of the r-torsion.
+
+
+_`G1`_ there is a unique subgroup of order r in E[r] which is defined over Fq, called base-field subgroup
+        
+_G1_ = E[r] ∩ Ker(π − [1])
+
+_`G2`_ We call G2 the
+trace zero subgroup, since all P ∈ G2 have Tr(P ) = O
+
+_G2_ = E[r] ∩ Ker(π − [q])
+
+<img src='./img/a5ca90b99c5c780b20935775988740a.png'>
+
+We can also map any P ∈ E[r] to the trace zero subgroup G2 via the anti-trace
+map aTr : P 7→ P ′ = [k]P − Tr(P ); showing that Tr(P ′) = O is a worthwhile
+exercise for the reader.
 
 #### Pairing types
+
+__G1__ and __G2__ can be defined as any of the r + 1 groups in E[r].
+
+a supersingular curve comes
+equipped with a distortion map φ; this is a non-(Fq-)rational map that takes
+a point in E(Fq) to a point in E(Fq^k)
 
 in fact, it will soon become obvious that it is
 always best to set G1 = _G1_, so the four types really are tied to the definition of
@@ -296,7 +367,7 @@ var ROM_CURVE_FP256BN = {
 
     // FP256BN Curve
     // Base Bits= 24
-    // y^2 = x^3 + A*x + B
+    // y^2 = x^3 + A·x + B
 
     // A = 0 or -3
     CURVE_A: 0,
@@ -322,7 +393,7 @@ var ROM_CURVE_FP256BN = {
     CURVE_Cru: [0xA1B807, 0xA24A3, 0x1EDB1C, 0xF1932D, 0xCDD79D, 0x18659B, 0x409210, 0x3988E1, 0x1, 0x0, 0x0],
 
     // i^2 + 1 = 0
-    // g2 = (x, y) = (xa+xb*i, ya+yb*i), base point of G2
+    // g2 = (x, y) = (xa+xb·i, ya+yb·i), base point of G2
     CURVE_Pxa: [0xC09EFB, 0x16B689, 0x3CD226, 0x12BF84, 0x1C539A, 0x913ACE, 0x577C28, 0x28560F, 0xC96C20, 0x3350B4, 0xFE0C],
     CURVE_Pxb: [0x7E6A2B, 0xED34A3, 0x89D269, 0x87D035, 0xDD78E2, 0x13B924, 0xC637D8, 0xDB5AE1, 0x8AC054, 0x605773, 0x4EA6],
     CURVE_Pya: [0xDC27FF, 0xB481BE, 0x48E909, 0x8D6158, 0xCB2475, 0x3E51EF, 0x75124E, 0x76770D, 0x42A3B3, 0x46E7C5, 0x7020],
