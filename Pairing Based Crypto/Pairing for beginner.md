@@ -358,7 +358,19 @@ first applied to pairinigs by Barreto et al.[BLS03]
 
 <img src='./img/df2860edb402af86a4c4cc3bb733af8.png'>
 
+#### Miller Loop
 
+<img src='./img/4859742c3bffed50d42aebe072b380a.png'>
+
+### Improvement of Miller Loop
+
+- BKLS-GHS algorithm
+
+<img src='./img/4859742c3bffed50d42aebe072b380a.png'>
+
+<img src='./img/9f5beb7415627015831be1e5ccbbb88.png'>
+
+- projective coordinates
 
 ### Paramaters
 
