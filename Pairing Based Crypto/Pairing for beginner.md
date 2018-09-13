@@ -379,6 +379,7 @@ first applied to pairinigs by Barreto et al.[BLS03]
 ### Paramaters
 
 ```js
+// milagro - FP256BN
 var ROM_CURVE_FP256BN = {
 
     // FP256BN Curve
