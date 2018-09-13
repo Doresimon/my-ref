@@ -519,3 +519,5 @@ var ROM_FIELD_FP256BN = {
 [[3]. milagro crypto library documentation](http://docs.milagro.io/en/)
 
 [[4]. Pairing for beginners, Craig Costello](http://www.craigcostello.com.au/pairings/PairingsForBeginners.pdf)
+
+[[5]. The Arithmetic of Elliptic Curves, Joseph H. Silverman](http://www.craigcostello.com.au/pairings/PairingsForBeginners.pdf)
