@@ -101,7 +101,7 @@ y^2=x^3+A·x^2+x
 
 where A must be small.
 
-### `infinity filed and extensions`
+### `finity filed and extensions`
 
     Fp: 0, 1, 2 ... P-1
     Fp^2(i): Fp(1)xFp(i),  1 + i^2 = 0      --->    i = sqrt(-1)
@@ -372,6 +372,10 @@ first applied to pairinigs by Barreto et al.[BLS03]
 
 - projective coordinates
 
+- Low Hamming weight loops
+
+- The final exponentiation
+
 ### Paramaters
 
 ```js
@@ -503,3 +507,15 @@ var ROM_FIELD_FP256BN = {
     Frb: [0x3EFF0D, 0x2AB2FF, 0xF35EB3, 0xF45D57, 0x3AF4A9, 0x3CCFD3, 0xD11369, 0x19CB83, 0x848198, 0x899D35, 0xC29E],
 };
 ```
+
+
+
+## Reference
+
+[[1]. BN - IETF](https://tools.ietf.org/id/draft-kasamatsu-bncurves-01.html)
+
+[[2]. apache milagro crypto library](https://github.com/milagro-crypto)  # recommended library. `c`, `java`, `go`, `js` version
+
+[[3]. milagro crypto library documentation](http://docs.milagro.io/en/)
+
+[[4]. Pairing for beginners, Craig Costello](http://www.craigcostello.com.au/pairings/PairingsForBeginners.pdf)
