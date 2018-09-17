@@ -85,21 +85,35 @@
 
 `Edwards curves`
 
-Edwards curves are supported using both regular and twisted Edwards format:-
+Edwards curves are supported using both regular and twisted Edwards format:
 
-A·x^2+y^2=1+B·x^2y^2
+- Ordinary Edwards curve
 
-where A=1 or A=−1.
+    x^2 + y^2 = 1 + B·x^2·y^2
+
+    <img src='./img/fcc1ab398c464fe8acac4a87fda9bf8.png'>
+
+- Twisted Edwards curve
+
+    A·x^2 + y^2 = 1 + B·x^2·y^2
+
+    <img src='./img/a2ce37f02bd19cae02fad5501cebf7c.png'>
 
 `Hessian curves`
 
+[wiki - Hessian form of an elliptic curve](https://en.wikipedia.org/wiki/Hessian_form_of_an_elliptic_curve)
+
+<img src='./img/62a423ebf164527fac427c78c46c17b.png'>
+
 `Montgoemry curves`
 
-Montgomery curves are represented as:-
+Montgomery curves are represented as:
 
-y^2=x^3+A·x^2+x
+B·y^2 = x^3 + A·x^2 + x
 
-where A must be small.
+where A must be small. B·(A^2 − 4) ≠ 0.
+
+<img src='./img/a59fb0eb37ef1975781451110ffe72a.png'>
 
 ### `finity filed and extensions`
 
@@ -116,6 +130,8 @@ where A must be small.
     . An element of the quadratic extension field will be represented as f=a+ib, where i is the square root of the quadratic non-residue -1. To add, subtract and multiply them we use the obvious methods.
 
     However for negation we can construct −f=−a−ib as b−(a+b)+i.(a−(a+b)) which requires only one base field negation. A similar idea can be used recursively for higher order extensions, so that only one base field negation is ever required.
+
+    @source: amcl
 
 ### Elliptic Curve computation
 
@@ -136,14 +152,20 @@ E(Fp): y^2 = x^3 + a·x +b
 most optimised implementations of Fq arithmetic have I ≫ 20M, and the multiplication to
 inversion ratio is commonly reported to be 80 : 1 or higher.
 
-### Some characteristics
+<!-- ### Some characteristics -->
+### r-torsion
 
 `Example 2.2.1`. Consider E/F101 : y^2 = x^3 + x + 1. The group
 order is `#E(Fq)` = 105 = 3·5·7, and P = (47, 12) ∈ E is a `generator`. `Lagrange’s theorem` says that points (and subgroups) over the base field will have order
-in {1, 3, 5, 7, 15, 21, 35, 105}. Indeed, to get a point of order r | 105, we simply
-multiply P by the appropriate cofactor, which is h = #E/r. For example, a point
+in {1, 3, 5, 7, 15, 21, 35, 105}. 
+
+Indeed, to get a point of order r | 105, we simply
+multiply P by the appropriate cofactor, which is h = #E/r. 
+
+For example, a point
 of order 3 is [35](47, 12) = (28, 8), a point of order 21 is [5](47, 12) = (55, 65),
 and a point of order 1 is [105](47, 12) = O (which is the only such point). 
+
 By definition, a point is “killed” (sent to O) when multiplied by its order. Any point
 over the full closure E(Fq) that is killed by r is said to be in the `r-torsion`. So,
 the point (55, 65) above is in the 21-torsion, as is the point (28, 8). There are
@@ -180,13 +202,14 @@ supp(D1 + D2) = {P, R, S}
 
 #### divisor of a function f
 
+... ???
 
 ## Pairing
 
 ### concept
 
-a `pairing` is a bilinear map on an abelian group M 
-taking values in some other abelian group R:
+a `pairing` is a bilinear map on an `abelian group` M 
+taking values in some other `abelian group` R:
 
 <img src='./img/1fdd2f130f1c4756733e3060d9f603a.png'>
 
@@ -203,7 +226,7 @@ are the `Weil` and `Tate` pairings on `divisor class groups` of algebraic curves
 the simplest and most efficient cases, on elliptic curves. 
 
 The groups G1 and G2 are defined in `E(Fq^k)`, and
-the target group GT is defined in the multiplicative group *Fqk, so we usually write
+the target group GT is defined in the multiplicative group *Fq^k, so we usually write
 G1 and G2 `additively`, whilst we write GT `multiplicatively`
 
 for scalars a, b ∈ Z
@@ -229,7 +252,7 @@ our discussion then, is the entire group of points of order r on E(_Fq), called 
 
 `E[r] ∼= Zr × Zr.` (4.2)
 
-`#E[r] = r^2` -  `r^2 = (r+1)·(r-1) + 1`
+`#E[r] = r^2 = (r+1)·(r-1) + 1`
 
 `(r+1)` extension group E(Fp^k)   ?????????
 
@@ -241,8 +264,8 @@ Equation (4.2) implies that (for prime r)
 the r-torsion consists of r+1 cyclic subgroups of order r.
 
 We point out
-that although O is in the 3-torsion, it does not have order 3, but rather order 1
-– points of order d | r are automatically included in the r-torsion
+that although O is in the 3-torsion, it does not have order 3, but rather `order 1`
+– `points of order d | r are automatically included in the r-torsion`
 
 Take any two points P, Q ∈ E[3] \ {O} 
 that are not in the same subgroup, neither of which
@@ -261,31 +284,37 @@ Namely, the trace map of the point P = (x, y) ∈ E(Fq^k) is defined as
 
 <img src='./img/e173eca4115b658502f3438215a1de8.png'>
 
-Galois theory tells us that Tr : E(Fq^k) → E(Fq), so when r||k#E(Fq) (which will
+Galois theory tells us that Tr : E(Fq^k) → E(Fq), so when r || #E(Fq) (which will
 always be the case from now on), then this map, which is actually a group homomorphism, sends all torsion points into one subgroup of the r-torsion.
 
 
-_`G1`_ there is a unique subgroup of order r in E[r] which is defined over Fq, called base-field subgroup
+_`G1`_ there is a unique subgroup of order r in E[r] which is defined over Fq, called `base-field subgroup`
+
+Since the Frobenius endomorphism π acts trivially on G1, but nowhere
+else in E[r], then it can be defined as G1 = E[r] ∩ Ker(π − [1]). That is, G1 is
+the [1]-eigenspace of π restricted to E[r].
         
-_G1_ = E[r] ∩ Ker(π − [1])
+_G1_ = E[r] ∩ Ker(π − [1]) ???
 
 _`G2`_ We call G2 the
-trace zero subgroup, since all P ∈ G2 have Tr(P ) = O
+`trace zero subgroup`, since all P ∈ G2 have Tr(P) = O
 
 _G2_ = E[r] ∩ Ker(π − [q])
 
 <img src='./img/a5ca90b99c5c780b20935775988740a.png'>
 
-We can also map any P ∈ E[r] to the trace zero subgroup G2 via the anti-trace
-map aTr : P 7→ P ′ = [k]P − Tr(P ); showing that Tr(P ′) = O is a worthwhile
+We can also map any P ∈ E[r] to the trace zero subgroup G2 via the `anti-trace map` 
+`aTr : P |→ P′ = [k]P − Tr(P)`; showing that Tr(P′) = O is a worthwhile
 exercise for the reader.
 
 #### Pairing types
 
 __G1__ and __G2__ can be defined as any of the r + 1 groups in E[r].
 
+Over prime fields, we call an elliptic curve E `supersingular` if `#E(Fq) = q+1`.
+
 a supersingular curve comes
-equipped with a distortion map φ; this is a non-(Fq-)rational map that takes
+equipped with a `distortion map φ`; this is a `non-(Fq-)rational map` that takes
 a point in E(Fq) to a point in E(Fq^k)
 
 in fact, it will soon become obvious that it is
@@ -300,6 +329,9 @@ always) issues concerning storage and efficiency.
 base-field group _G1_ = E[r] ∩ Ker(π − [1]) with generator _P1_
 
 the trace-zero subgroup _G2_ = E[r] ∩ Ker(π − [q]) with generator _P2_
+
+<img src='./img/3d5f340751cf7c4ee35cf68a3fa8591.png'>
+<img src='./img/03fd0b4974d35637f85ca82e335e5da.png'>
 
 Let P1 be the generator of __G1__ and P2 be the generator of __G2__. 
 
@@ -377,6 +409,10 @@ first applied to pairinigs by Barreto et al.[BLS03]
 - The final exponentiation
 
 ### Paramaters
+
+BN curves
+
+<img src='./img/14a5bf1da0c39974042e0f4fb0eebe0.png'>
 
 ```js
 // milagro - FP256BN
