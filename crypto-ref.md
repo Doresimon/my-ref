@@ -46,3 +46,11 @@ A useful website of Hyper Elliptic.
 ## [Wei Dai](http://www.weidai.com/)
 
 ## [Crypto ++](https://www.cryptopp.com/)
+
+# Commitment
+
+## [Commitment Scheme](https://en.wikipedia.org/wiki/Commitment_scheme)
+
+## [Accumulator wiki](https://en.wikipedia.org/wiki/Accumulator_(cryptography))
+
+## [Lamport one-time signature scheme](https://en.wikipedia.org/wiki/Lamport_signature)
