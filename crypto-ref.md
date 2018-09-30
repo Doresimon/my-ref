@@ -42,7 +42,6 @@ In cryptography, a __Schnorr signature__ is a digital signature produced by the 
 
 A useful website of Hyper Elliptic. 
 
-
 ## [Wei Dai](http://www.weidai.com/)
 
 ## [Crypto ++](https://www.cryptopp.com/)
