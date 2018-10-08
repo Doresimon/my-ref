@@ -4,7 +4,7 @@
 
 [[BLS01]Short signatures from the Weil pairing](https://www.iacr.org/archive/asiacrypt2001/22480516.pdf)
 
-[[BGSL03]Aggregate and Verifiably Encrypted Signatures from Bilinear Maps](http://crypto.stanford.edu/~dabo/papers/aggreg.pdf)
+[[BGLS03]Aggregate and Verifiably Encrypted Signatures from Bilinear Maps](http://crypto.stanford.edu/~dabo/papers/aggreg.pdf)
 
 # [BLS01]Short signatures from the Weil pairing
 
@@ -58,7 +58,7 @@ x  <--- $ --- [0, p-1]
 (g2; v; h; σ) is a valid co-Diffie-Hellman tuple
 
 
-# [BGSL03]Aggregate and Verifiably Encrypted Signatures from Bilinear Maps
+# [BGLS03]Aggregate and Verifiably Encrypted Signatures from Bilinear Maps
 
 ## Scheme
 
