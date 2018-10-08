@@ -92,7 +92,7 @@ from 1 to k = |U|. Each user ui 2 U provides a signature σi <--- G1 on a messag
 of his choice. The messages Mi must all be distinct. Compute σ = MulAll(σi). The aggregate
 signature is σ <-- G1.
 
-`Aggregated Signatur` = `σ` = `MulAll(σi)`
+`Aggregated Signature` = `σ` = `MulAll(σi)`
 
 ### Aggregate Verifcation
 
@@ -104,3 +104,21 @@ keys vi <--- G2 for all users ui <--- U. To verify the aggregate signature σ,
 2. compute hi = H(Mi) for 1 ≤ i ≤ k = |U|, and accept if e(σ; g2) = MulAll(e(hi; vi)) holds.
 
 `e(σ; g2)` == `MulAll(e(hi; vi))` 
+
+## Application
+
+### Verifiably Encrypted Signatures
+
+"
+Next, we show an application of aggregate signatures to `verifiably encrypted signatures`. Verifiably
+encrypted signatures are used in applications such as `online contract signing`. Suppose Alice
+wants to show Bob that she has signed a message, but does not want Bob to possess her signature
+of that message. (Alice will give her signature to Bob only when a certain event has occurred, e.g.,
+Bob has given Alice his signature on the same message.) Alice can achieve this by encrypting her
+signature using the public key of a trusted third party, and sending this to Bob along with a proof
+that she has given him a valid encryption of her signature. Bob can verify that Alice has signed the
+message, but cannot deduce any information about her signature. Later in the protocol, if Alice is
+unable or unwilling to reveal her signature, Bob can ask the third party to reveal Alice’s signature.
+"
+
+### Verifiably Encrypted Signatures via Aggregation
