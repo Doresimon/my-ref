@@ -6,6 +6,8 @@
 
 [[BGLS03]Aggregate and Verifiably Encrypted Signatures from Bilinear Maps](http://crypto.stanford.edu/~dabo/papers/aggreg.pdf)
 
+[[ABLS18]BLS Multi-Signatures With Public-Key Aggregation](https://crypto.stanford.edu/~dabo/pubs/papers/BLSmultisig.html)
+
 # [BLS01]Short signatures from the Weil pairing
 
 ## Assumption
@@ -101,9 +103,9 @@ of users U, indexed as before, and are given the original messages Mi <--- {0, 1
 keys vi <--- G2 for all users ui <--- U. To verify the aggregate signature σ,
 
 1. ensure that the messages Mi are all distinct, and reject otherwise; and
-2. compute hi = H(Mi) for 1 ≤ i ≤ k = |U|, and accept if e(σ; g2) = MulAll(e(hi; vi)) holds.
+2. compute hi = H(Mi) for 1 ≤ i ≤ k = |U|, and accept if e(σ, g2) = MulAll(e(hi, vi)) holds.
 
-`e(σ; g2)` == `MulAll(e(hi; vi))` 
+`e(σ, g2)` == `MulAll(e(hi, vi))` 
 
 ## Application
 
@@ -159,3 +161,64 @@ holds.
 __Adjudication.__ Given an adjudicator’s public key v' and corresponding private key `x' <--- Zp`, a
 certified public key `v`, and a verifiably encrypted signature `(w, µ)` on some message `M`, ensure
 that the verifiably encrypted signature is valid; then output `σ = w/µ^x'`.
+
+# [[ABLS18] BLS Multi-Signatures With Public-Key Aggregation](https://crypto.stanford.edu/~dabo/pubs/papers/BLSmultisig.html)
+
+based on bls aggregate signature, just when m1...mi are the same. 
+
+## public parameter
+
+`H0(m1, m2, ... mn)` a hash function that map M^n ---> R^n, where R^n = {1, 2, ... 2^n}
+
+## Scheme
+
+### Key Generation
+
+For a particular user, pick random x <---$--- Zp, and compute v = g2^x. The user’s
+public key is v <-- G2. The user’s secret key is x <-- Zp.
+
+`private key` = `x`
+
+`public key` = `v` = `g2^x`
+
+### Signing
+
+For a particular user, given the secret key x and a message M <-- {0,1 }*, compute
+h = H(M), where h <-- G1, and σ = h^x. The signature is σ <-- G1.
+
+`sig` = `σ` = `h^x` = `H(M)^x`
+
+### Verification
+
+`e(σ, g2)` == `e(h, v)`
+
+Given user’s public key v, a message M, and a signature σ, compute h = H(M);
+accept if e(σ, g2) = e(h, v) holds.
+
+### Aggregation
+
+~~For the aggregating subset of users U ⊆ U, assign to each user an index i, ranging
+from 1 to k = |U|. Each user ui 2 U provides a signature σi <--- G1 on a message Mi <--- {0, 1}*
+of his choice. The messages Mi must all be distinct. Compute σ = MulAll(σi). The aggregate
+signature is σ <-- G1.~~
+
+~~`Aggregated Signature` = `σ` = `MulAll(σi)`~~
+
+1. compute `(t1, t2 ... tn)` = `H0(pk1, pk2, ... pkn) <---  R^n`
+2. compute `σ` = `MulAll(σi^ti)` = `σ1^t1 · σ2^t2 · ... · σn^tn`
+
+### Aggregate Verification
+
+~~We are given an aggregate signature σ <--- G1 for an aggregating subset
+of users U, indexed as before, and are given the original messages Mi <--- {0, 1}∗ and public
+keys vi <--- G2 for all users ui <--- U. To verify the aggregate signature σ,~~
+
+1. ~~ensure that the messages Mi are all distinct, and reject otherwise; and~~
+2. ~~compute hi = H(Mi) for 1 ≤ i ≤ k = |U|, and accept if e(σ, g2) = MulAll(e(hi, vi)) holds.~~
+
+~~`e(σ, g2)` == `MulAll(e(hi, vi))`~~
+
+1. compute `(t1, t2 ... tn)` = `H0(pk1, pk2, ... pkn)`
+2. compute aggregated public key `apk` = `pk1^t1 · pk2^t2 · ... · pkn^tn`
+
+`e(g1, σ)` == `e(apk, H(m))`
