@@ -235,9 +235,33 @@ keys vi <--- G2 for all users ui <--- U. To verify the aggregate signature σ,~~
 
 # [[full version] Compact Multi-Signatures for Smaller Blockchains](https://eprint.iacr.org/2018/483.pdf)
 
-## Description of our Pairing-Based Scheme
+define a multisignature scheme as algorithms `Pg`, `Kg`, `Sign`, `KAg`, and `Vf`. 
+A trusted party generates the system parameters par Pg. Every signer generates a key pair
+`(pk, sk)` <---$--- `Kg(par)`, and signers can collectively sign a message m by each calling
+the interactive algorithm `Sign(par, PK, sk, m)`, where PK is the set of the public
+keys of the signers, and sk is the signer’s individual secret key. At the end of the
+protocol, every signer outputs a signature `σ`. Algorithm `KAg` on input a set of
+public keys `PK` outputs a single aggregate public key `apk`. A verifier can check
+the validity of a signature `σ` on message `m` under an aggregate public key `apk` by
+running `Vf(par, apk, m, σ)` which outputs 0 or 1 indicating that the signatures
+is invalid or valid, respectively.
 
-Our pairing-based multi-signature with public-key aggregation MSP is built from
+More precisely, we extend the definition of multisignatures
+with two algorithms. `SAg` takes input a set of tuples, each tuple containing an
+aggregate public key `apk`, a message `m`, and a multisignature `σ`, and outputs
+a single aggregate multisignature `Σ`. `AVf` takes input a set of tuples, 
+each tuple containing an aggregate public key `apk` and a message `m`, and an aggregate
+multisignature `Σ`, and outputs 0 or 1 indicating that the aggregate multisignatures is 
+invalid or valid, respectively. Observe that any multisignature scheme
+can be transformed into an aggregate multisignature scheme in a trivial manner, 
+by implementing `SAg(par, fapk i, mi, σig)` to output `Σ (σ1,.., σn)`, and
+`AVf(par, {apki, mi},  (σ1,..., σn))` to output 1 if all individual multisignatures
+are valid. The goal however is to have `Σ` much smaller than the concatenation
+of the individual multisignatures, and ideally of constant size.
+
+## Public Key Aggregate Signature
+
+Our pairing-based multi-signature with `public-key aggregation` `MSP` is built from
 the BLS signature scheme [13]. The scheme is secure in the plain public key
 model, and assumes hash functions H0: {0, 1}∗ <--- G2 and H1: {0, 1}∗ <--- Zq.
 
@@ -249,7 +273,7 @@ G(κ) and outputs `par` = `(q, G1, G2, Gt, e, g1, g2)`.
 The key generation algorithm Kg(par) chooses `sk <---$--- Zq`,
 computes `pk` = `g2^sk`, and outputs `(pk, sk)`.
 
-`Key Aggregation.` `` 
+`Key Aggregation.` 
 
 ```js
 // KAg({pk1, pk2, ..., pkn}) outputs
@@ -257,40 +281,82 @@ apk <--- MulAll(pki^(H1(pki,{pk1,pk2...pkn})))
 ```
 
 `Signing.` 
-Signing is a single round protocol. Sign(par, {pk1, ..., pkn}, ski, m)
-computes si <--- H0(m)^ai·ski, where ai = H1(pki, {pk1, pk2 ... pkn}). Send si to a
-designated combiner who computes the final signature as σ = MulAll(sj). This
+Signing is a single round protocol. `Sign(par, {pk1, ..., pkn}, ski, m)`
+computes `si` <--- `H0(m)^ai·ski`, where `ai = H1(pki, {pk1, pk2 ... pkn})`. Send `si` to a
+designated combiner who computes the final signature as `σ = MulAll(sj)`. This
 designated combiner can be one of the signers or it can be an external party.
 
 `Multi-Signature Verification.` 
 
 ```js
 // Vf(par, apk, m, σ) outputs 1 iff
-e(σ, g2^(−1)) · e(H0(m), apk) == 1
+e(σ, g2^(−1)) · e(H0(m), apk) ?= O
 ```
 
 
 `Batch verification.` 
 We note that a set of b multi-signatures can be verified as
 a batch faster than verifying them one by one. To see how, suppose we are given
-triples (mi, σi, apki) for i = 1, ... , b, where apk i is the aggregated public-key
-used to verify the multi-signature σi on mi. If all the messages m1, ... , mb are
+triples `(mi, σi, apki)` for i = 1,...,b, where apk i is the aggregated public-key
+used to verify the multi-signature `σi` on `mi`. If all the messages m1,...,mb are
 distinct then we can use signature aggregation as in (1) to verify all these triples
 as a batch:
 
-- Compute an aggregate signature ~σ = σ1 · σ2 · ... · σb <--- G1,
+- Compute an aggregate signature `~σ = σ1 · σ2 · ... · σb` <--- G1,
 - Accept all b multi-signature tuples as valid iff
 
-    e(~σ, g2) == e(H0(m1), apk1) · e(H0(m2), apk2) · ... · e(H0(mn), apkn)
+    `e(~σ, g2) == e(H0(m1), apk1) · e(H0(m2), apk2) · ... · e(H0(mn), apkn)`
 
 This way, verifying the b multi-signatures requires only b+1 pairings instead
 of 2b pairings to verify them one by one. This simple batching procedure can
-only be used when all the messages m1, ..., mb are distinct. If some messages
+only be used when all the messages `m1, ..., mb` are distinct. If some messages
 are repeated then batch verification can be done by first choosing random exponents 
-ρ1,...,ρb <---$---{1,...,2^κ}, where κ is a security parameter, computing
-~σ = σ1^ρ1 · σ2^ρ2 · ... · σb^ρb <--- G2, and checking that
-```
-e(~σ, g2) ?= e(H0(m1), apk^ρ1)·...·e(H0(mb),apkb^ρb)
-```
+`ρ1,...,ρb <---$---{1,...,2^κ}`, where κ is a security parameter, computing
+`~σ = σ1^ρ1 · σ2^ρ2 · ... · σb^ρb` <--- G2, and checking that
+
+`e(~σ, g2) ?= e(H0(m1), apk^ρ1)·...·e(H0(mb),apkb^ρb)`
+
 Of course the pairings on the right hand side can be coalesced for repeated
 messages.
+
+## Signature Aggregate Scheme (based on public key aggregate signature)
+
+`Signing.` 
+
+Sign(par, _PK_, ski, m) computes `si = H(apk, m)^(ai·ski)`, where apk = KAg(par, _PK_)
+and `ai = H0(pki, {pk1,...,pkn})`. The designated combiner collect all signatures si and computes
+the final signature
+```js
+σ = MullAll(sj)
+```
+
+_PK_ is public key set of all signers.
+
+`Multi-Signature Verification.`
+```js
+// Vf(par, apk, m, σ) outputs 1 if and only if
+e(σ, g2^(−1)) · e(H(apk, m), apk) ?= O
+```
+
+`Signature Aggregation.`
+```js
+// SAg(par, {(apk1, m1, σ1)},...,{(apkn, mn, σn)}) outputs 
+Σ = MulAll(σi)
+```
+
+`Aggregate Signature Verification.`
+```js
+// AVf({(apki, mi)}, Σ) outputs 1 if and only if
+e(Σ; g2^(−1)) · MullAll(e(H(apki, mi), apki)) ?= (O of Gt).
+```
+
+## Accountable-Subgroup Multisignatures
+
+Micali, Ohta, and Reyzin [38] defined an accountable-subgroup multisignature
+scheme as a multisignature scheme where any subset `S` of a group of signers PK
+can create a valid multisignature that can be verified against the public keys of
+signers in the subset. An `ASM` scheme can be combined with an arbitrary access
+structure over PK to determine whether the subset S is authorized to sign on
+behalf of PK. For example, requiring that `|S| ≥ t` turns the `ASM` scheme into a
+type of threshold signature scheme whereby the signature also authenticates the
+set of signers that participated.
