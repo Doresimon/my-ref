@@ -8,7 +8,10 @@
 
 [[ABLS18]BLS Multi-Signatures With Public-Key Aggregation](https://crypto.stanford.edu/~dabo/pubs/papers/BLSmultisig.html)
 
-# [BLS01]Short signatures from the Weil pairing
+[[full version] Compact Multi-Signatures for Smaller Blockchains](https://eprint.iacr.org/2018/483.pdf)
+
+
+# [[BLS01]Short signatures from the Weil pairing](https://www.iacr.org/archive/asiacrypt2001/22480516.pdf)
 
 ## Assumption
 
@@ -60,7 +63,7 @@ x  <--- $ --- [0, p-1]
 (g2; v; h; σ) is a valid co-Diffie-Hellman tuple
 
 
-# [BGLS03]Aggregate and Verifiably Encrypted Signatures from Bilinear Maps
+# [[BGLS03]Aggregate and Verifiably Encrypted Signatures from Bilinear Maps](http://crypto.stanford.edu/~dabo/papers/aggreg.pdf)
 
 ## Scheme
 
@@ -106,6 +109,12 @@ keys vi <--- G2 for all users ui <--- U. To verify the aggregate signature σ,
 2. compute hi = H(Mi) for 1 ≤ i ≤ k = |U|, and accept if e(σ, g2) = MulAll(e(hi, vi)) holds.
 
 `e(σ, g2)` == `MulAll(e(hi, vi))` 
+
+## attack
+
+if A wants to fake a signature of B,
+A generates skA, then generates pkA = g^skA * pkB^(-1).
+when ag
 
 ## Application
 
@@ -166,6 +175,7 @@ that the verifiably encrypted signature is valid; then output `σ = w/µ^x'`.
 
 based on bls aggregate signature, just when m1...mi are the same. 
 
+
 ## public parameter
 
 `H0(m1, m2, ... mn)` a hash function that map M^n ---> R^n, where R^n = {1, 2, ... 2^n}
@@ -222,3 +232,65 @@ keys vi <--- G2 for all users ui <--- U. To verify the aggregate signature σ,~~
 2. compute aggregated public key `apk` = `pk1^t1 · pk2^t2 · ... · pkn^tn`
 
 `e(g1, σ)` == `e(apk, H(m))`
+
+# [[full version] Compact Multi-Signatures for Smaller Blockchains](https://eprint.iacr.org/2018/483.pdf)
+
+## Description of our Pairing-Based Scheme
+
+Our pairing-based multi-signature with public-key aggregation MSP is built from
+the BLS signature scheme [13]. The scheme is secure in the plain public key
+model, and assumes hash functions H0: {0, 1}∗ <--- G2 and H1: {0, 1}∗ <--- Zq.
+
+`Parameters Generation.` 
+Pg(κ) sets up bilinear group (q, G1, G2, Gt, e, g1, g2)
+G(κ) and outputs `par` = `(q, G1, G2, Gt, e, g1, g2)`.
+
+`Key Generation.` 
+The key generation algorithm Kg(par) chooses `sk <---$--- Zq`,
+computes `pk` = `g2^sk`, and outputs `(pk, sk)`.
+
+`Key Aggregation.` `` 
+
+```js
+// KAg({pk1, pk2, ..., pkn}) outputs
+apk <--- MulAll(pki^(H1(pki,{pk1,pk2...pkn})))
+```
+
+`Signing.` 
+Signing is a single round protocol. Sign(par, {pk1, ..., pkn}, ski, m)
+computes si <--- H0(m)^ai·ski, where ai = H1(pki, {pk1, pk2 ... pkn}). Send si to a
+designated combiner who computes the final signature as σ = MulAll(sj). This
+designated combiner can be one of the signers or it can be an external party.
+
+`Multi-Signature Verification.` 
+
+```js
+// Vf(par, apk, m, σ) outputs 1 iff
+e(σ, g2^(−1)) · e(H0(m), apk) == 1
+```
+
+
+`Batch verification.` 
+We note that a set of b multi-signatures can be verified as
+a batch faster than verifying them one by one. To see how, suppose we are given
+triples (mi, σi, apki) for i = 1, ... , b, where apk i is the aggregated public-key
+used to verify the multi-signature σi on mi. If all the messages m1, ... , mb are
+distinct then we can use signature aggregation as in (1) to verify all these triples
+as a batch:
+
+- Compute an aggregate signature ~σ = σ1 · σ2 · ... · σb <--- G1,
+- Accept all b multi-signature tuples as valid iff
+
+    e(~σ, g2) == e(H0(m1), apk1) · e(H0(m2), apk2) · ... · e(H0(mn), apkn)
+
+This way, verifying the b multi-signatures requires only b+1 pairings instead
+of 2b pairings to verify them one by one. This simple batching procedure can
+only be used when all the messages m1, ..., mb are distinct. If some messages
+are repeated then batch verification can be done by first choosing random exponents 
+ρ1,...,ρb <---$---{1,...,2^κ}, where κ is a security parameter, computing
+~σ = σ1^ρ1 · σ2^ρ2 · ... · σb^ρb <--- G2, and checking that
+```
+e(~σ, g2) ?= e(H0(m1), apk^ρ1)·...·e(H0(mb),apkb^ρb)
+```
+Of course the pairings on the right hand side can be coalesced for repeated
+messages.
