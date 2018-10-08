@@ -122,3 +122,40 @@ unable or unwilling to reveal her signature, Bob can ask the third party to reve
 "
 
 ### Verifiably Encrypted Signatures via Aggregation
+
+1. Alice wishes to create a verifiably encrypted signature, which Bob will verify; Carol is the adjudicator. Alice and Carol’s keys are both generated under the underlying signature scheme’s
+key-generation algorithm.
+2. Alice creates a signature `σ` on `M` under her public key. She forges a signature `σ'` on some
+random message `M'` under Carol’s public key. She then combines `σ` and `σ'`, obtaining an
+aggregate `w`. The verifiably encrypted signature is the pair `(w, M')`.
+3. Bob validates Alice’s verifiably encrypted signature (w, M') on M by checking that w is a
+valid aggregate signature by Alice on M and by Carol on M'.
+4. Carol adjudicates, given a verifiably encrypted signature (w, M') on M by Alice, by computing
+a signature σ' on M' under her key, and removing σ' from the aggregate; what remains is
+Alice’s ordinary signature σ.
+
+### The Bilinear Verifiably-Encrypted Signature Scheme
+
+The bilinear verifiably encrypted signature scheme is built on the bilinear aggregate signature
+scheme of the previous section. It shares the key-generation algorithm with the underlying aggregate
+scheme. Moreover, the adjudicator’s public and private information is simply an aggregate-signature
+keypair. The scheme comprises the seven algorithms described below:
+
+__Key Generation.__ KeyGen and AdjKeyGen are the same as KeyGen in the co-GDH signature
+scheme.
+
+__Signing, Verification.__ Sign and Verify are the same as in the co-GDH signature scheme.
+
+__VESig Creation.__ Given a secret key `x <--- Zp`, a message `M <--- {0, 1}*`, and an adjudicator’s public
+key `v' <--- G2`, compute `h = H(M)`, where `h <--- G1`, and `σ = h^x`. Select r at random from Zp
+and set `µ = f(g2)^r `and `σ' = f(v')^r`. Aggregate σ and σ' as `w = σ·σ' <--- G1`. The verifiably
+encrypted signature is the pair `(w, µ)`. (This can also be viewed as ElGamal encryption of σ
+under the adjudicator’s key.)
+
+__VESig Verification.__ Given a public key v, a message M, an adjudicator’s public key v', and a
+verifiably encrypted signature (w, µ), set h H(M); accept if e(w, g2) = e(h, v) · e(µ, v')
+holds.
+
+__Adjudication.__ Given an adjudicator’s public key v' and corresponding private key `x' <--- Zp`, a
+certified public key `v`, and a verifiably encrypted signature `(w, µ)` on some message `M`, ensure
+that the verifiably encrypted signature is valid; then output `σ = w/µ^x'`.
