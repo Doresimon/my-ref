@@ -26,7 +26,7 @@ C++ 函数传参：
 
 3. C++提供了 传递变量的引用。形参是引用变量，和实参是一个变量，调用函数时，形参(引用变量)指向实参变量单元。这种通过形参引用可以改变实参的值
 
-## `STL`(Standrad Template Library)
+## `STL`(Standard Template Library)
 
 - Algorithms
   - Sorting
@@ -36,11 +36,11 @@ C++ 函数传参：
   - Partition Operations
 - Containers
   - Sequence Containers
-    - `vector`
-    - `list`
-    - `deque`
-    - `arrays`
-    - `forward_list`
+    - `vector` - Dynamic array
+    - `list` - Doubly linked list
+    - `deque` - Double end queue
+    - `array` - array
+    - `forward_list` - Singly linked list
   - Container Adaptors
     - `queue`
     - `priority_queue`
