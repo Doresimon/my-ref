@@ -48,10 +48,18 @@ void test_forward_list()
     }
     print(fl);
 
-    fl.assign({1, 2, 3, 4, 5, 6, 7, 8});
+    fl.emplace_front(66);
     print(fl);
 
     fl.assign(6, 5);
+    print(fl);
+    fl.assign({1, 2, 3, 4, 5, 6, 7, 8});
+    print(fl);
+
+    fl.remove(2);
+    print(fl);
+    // Removing according to condition.
+    fl.remove_if([](int x) { return x % 2 == 0; });
     print(fl);
 }
 
