@@ -1,5 +1,5 @@
 /**
- * `vector`
+ * vector(Dynamic Array)
  * 
  * Iterators
  * Capacity
