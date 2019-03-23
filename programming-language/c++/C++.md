@@ -68,4 +68,8 @@ Vector elements are **placed in contiguous storage** so that they can be accesse
 
 **Inserting at the end** takes differential time, as sometimes there may be a need of extending the array. **Removing** the last element takes only **constant time** because no resizing happens. **Inserting and erasing at the beginning or in the middle** is **linear in time**.
 
+**When the memory allocated for the vector falls short of storing new elements, a new memory block is allocated to vector and all elements are copied from the old location to the new location.**
+
+Normally, use `.reserve(N)` to reserve some memory.
+
 [http://www.cplusplus.com/reference/vector/vector/](http://www.cplusplus.com/reference/vector/vector/)
