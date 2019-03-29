@@ -1,6 +1,6 @@
 # operator `new`
 
-## ES5 用法
+## ES5
 
 ```js
 function People(name) {
@@ -48,14 +48,48 @@ Bob.showCnt(); // 2
 }
 ```
 
-@ref:
+@[ref](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/new):
 
 The `new` operator lets developers create an instance of a user-defined object type or of one of the built-in object types that has a constructor function.The new keyword does the following things:
 
-Creates a **blank, plain JavaScript object**;
+1. Creates a **blank, plain JavaScript object**;
 
-Links (sets the `constructor(prototype)` of) this object to another object(`__proto__`);
+2. Links (sets the `constructor(prototype)` of) this object to another object(`__proto__`);
 
-Passes the newly created object from Step 1 as the this context;
+3. Passes the newly created object from Step 1 as the this context;
 
-Returns this if the function doesn't return its own object.
+4. Returns this if the function doesn't return its own object.
+
+## ES6
+
+```js
+class People {
+  constructor(name, age = 18) {
+    this.name = name;
+    this.age = age;
+  }
+  // instance methods
+  hello() {
+    console.log(`hello, i'm ${this.name}`);
+  }
+  foo() {
+    console.log("People.name", People.name);
+  }
+  // static methods(only for class)
+  static oops() {
+    console.log("oops");
+    if (!this.prototype.cnt) {
+      this.prototype.cnt = 0; // define a static variable
+    }
+    this.prototype.cnt++;
+    console.log("cnt", this.prototype.cnt);
+  }
+}
+
+const alice = new People("alice");
+alice.hello();
+alice.foo();
+// alice.oops(); // not a function
+People.oops();
+People.oops();
+```
