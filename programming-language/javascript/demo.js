@@ -74,19 +74,61 @@
 //   });
 
 //// 4
-const alice = {
-  name: "alice",
-  age: 18,
-  school: {
-    name: "fdu"
-  }
-};
-const { name: herName, age, school: school } = alice;
-console.log(herName, age, school);
+// const alice = {
+//   name: "alice",
+//   age: 18,
+//   school: {
+//     name: "fdu"
+//   }
+// };
+// const { name: herName, age, school: school } = alice;
+// console.log(herName, age, school);
 
-const map = new Map();
-map.set(1, "aaa");
-map.set({ name: 1 }, "bbb");
+// const map = new Map();
+// map.set(1, "aaa");
+// map.set({ name: 1 }, "bbb");
 
-console.log(map.get(1));
-console.log(map.get({ name: 1 })); // error
+// console.log(map.get(1));
+// console.log(map.get({ name: 1 })); // error
+
+//// 5
+
+class People {}
+
+console.log("true", typeof true); // number
+console.log("NaN", typeof NaN); // number
+console.log("Infinity", typeof Infinity); // number
+console.log("1", typeof 1); // number
+console.log("''", typeof ""); // string
+console.log("[]", typeof []); // object
+console.log("{}", typeof {}); // object
+console.log("null", typeof null); // object
+console.log("undefined", typeof undefined); // undefined
+console.log("() => {}", typeof (() => {})); // function
+console.log("class{}", typeof People); // function
+console.log("Symbol('...')", typeof Symbol("s")); // symbol
+
+//// 6
+function Car(make, model, year) {
+  this.make = make;
+  this.model = model;
+  this.year = year;
+}
+let someCar = new Car("Honda", "Accord", 1998);
+
+console.log(someCar instanceof Car);
+// expected output: true
+
+console.log(someCar instanceof Object);
+// expected output: true
+
+let arr = [1, 2, 3];
+
+let nnn = Number(666);
+let sss = "aaaaa";
+
+console.log(arr instanceof Array);
+console.log(1 instanceof Number);
+console.log(Number(1) instanceof Number);
+console.log(new Number(1) instanceof Number);
+console.log(sss instanceof String);

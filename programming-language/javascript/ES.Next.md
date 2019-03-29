@@ -95,26 +95,26 @@
 
    1. export
 
-   ```js
-   const alice = {
-     name: "alice"
-   };
-   const bob = {
-     name: "bob"
-   };
-   export { alice };
-   export { bob };
-   export default { alice, bob };
-   ```
+      ```js
+      const alice = {
+        name: "alice"
+      };
+      const bob = {
+        name: "bob"
+      };
+      export { alice };
+      export { bob };
+      export default { alice, bob };
+      ```
 
    2. import
 
-   ```js
-   import * from 'xxx.js'
-   import Couple from 'xxx.js'
-   import {alice, bob} from 'xxx.js'
-   import Couple as CP from 'xxx.js'
-   ```
+      ```js
+      import * from 'xxx.js'
+      import Couple from 'xxx.js'
+      import {alice, bob} from 'xxx.js'
+      import Couple as CP from 'xxx.js'
+      ```
 
 6. Template Literal
 
@@ -186,7 +186,7 @@
     // 现在
     const something = "y";
     const x = {
-      something // 给属性默认添加 key
+      something // 给属性默认添加 key (something)
     };
     ```
 
@@ -233,7 +233,7 @@
 
     // for in
     // 循环对象的可枚举属性
-    // 也可循环一个数组
+    // 也可循环一个数组 - 勿用
     for(const key in obj){
         const v = obj[key]//obj.getProperty(key)
     }
@@ -245,7 +245,7 @@
 
     一个 `Map` 对象在迭代时会根据对象中元素的插入顺序来进行 , 一个 `for...of` 循环在每次迭代后会返回一个形式为[`key`, `value`]的数组。
 
-    键的比较是基于 "`SameValueZero`" 算法：**NaN 是与 NaN 相等的（虽然 NaN !== NaN）**，**剩下所有其它的值是根据 === 运算符的结果判断是否相等**。在目前的 ECMAScript 规范中，-0 和+0 被认为是相等的，尽管这在早期的草案中并不是这样。
+    键的比较是基于 "`SameValueZero`" 算法：**`NaN` 是与 `NaN` 相等的（虽然 `NaN !== NaN`）**，**剩下所有其它的值是根据 === 运算符的结果判断是否相等**。在目前的 ECMAScript 规范中，-0 和+0 被认为是相等的，尽管这在早期的草案中并不是这样。
 
     - Object vs Map
 
