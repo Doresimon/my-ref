@@ -2,6 +2,8 @@
 
 [@wiki](https://en.wikipedia.org/wiki/Transmission_Control_Protocol)
 
+[@rfc793 tcp](https://tools.ietf.org/rfc/rfc793.txt)
+
 [@rfc7414 roadmap of tcp](https://tools.ietf.org/rfc/rfc7414.txt)
 
 `TCP` 为 `IP 协议簇`的一个主要协议, 一般称为 `TCP/IP`.
