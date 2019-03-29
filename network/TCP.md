@@ -247,7 +247,7 @@ When an endpoint wishes to stop its half of the connection, it transmits a `FIN`
                                Figure 13.
 ```
 
-````
+```
       TCP A                                                TCP B
 
   1.  ESTABLISHED                                          ESTABLISHED
@@ -272,56 +272,51 @@ When an endpoint wishes to stop its half of the connection, it transmits a `FIN`
 
 ### Recovery from Old Duplicate SYN
 
-````
-
+```
       TCP A                                                TCP B
 
-1.  CLOSED LISTEN
+  1.  CLOSED                                               LISTEN
 
-2.  SYN-SENT --> <SEQ=100><CTL=SYN> ...
+  2.  SYN-SENT    --> <SEQ=100><CTL=SYN>               ...
 
-3.  (duplicate) ... <SEQ=90><CTL=SYN> --> SYN-RECEIVED
+  3.  (duplicate) ... <SEQ=90><CTL=SYN>                --> SYN-RECEIVED
 
-4.  SYN-SENT <-- <SEQ=300><ACK=91><CTL=SYN,ACK> <-- SYN-RECEIVED
+  4.  SYN-SENT    <-- <SEQ=300><ACK=91><CTL=SYN,ACK>   <-- SYN-RECEIVED
 
-5.  SYN-SENT --> <SEQ=91><CTL=RST> --> LISTEN
+  5.  SYN-SENT    --> <SEQ=91><CTL=RST>                --> LISTEN
 
-6)                 ... <SEQ=100><CTL=SYN>               --> SYN-RECEIVED
 
-7)  SYN-SENT <-- <SEQ=400><ACK=101><CTL=SYN,ACK> <-- SYN-RECEIVED
+  6.              ... <SEQ=100><CTL=SYN>               --> SYN-RECEIVED
 
-8)  ESTABLISHED --> <SEQ=101><ACK=401><CTL=ACK> --> ESTABLISHED
+  7.  SYN-SENT    <-- <SEQ=400><ACK=101><CTL=SYN,ACK>  <-- SYN-RECEIVED
 
-                  Recovery from Old Duplicate SYN
+  8.  ESTABLISHED --> <SEQ=101><ACK=401><CTL=ACK>      --> ESTABLISHED
 
-                             Figure 9.
+                    Recovery from Old Duplicate SYN
 
+                               Figure 9.
 ```
 
 ### Half-Open Connection
 
 ```
-
       TCP A                                           TCP B
 
-1.  (CRASH) (send 300,receive 100)
+  1.  (CRASH)                               (send 300,receive 100)
 
-2.  CLOSED ESTABLISHED
+  2.  CLOSED                                           ESTABLISHED
 
-3.  SYN-SENT --> <SEQ=400><CTL=SYN> --> (??)
+  3.  SYN-SENT --> <SEQ=400><CTL=SYN>              --> (??)
 
-4.  (!!) <-- <SEQ=300><ACK=100><CTL=ACK> <-- ESTABLISHED
+  4.  (!!)     <-- <SEQ=300><ACK=100><CTL=ACK>     <-- ESTABLISHED
 
-5.  SYN-SENT --> <SEQ=100><CTL=RST> --> (Abort!!)
+  5.  SYN-SENT --> <SEQ=100><CTL=RST>              --> (Abort!!)
 
-6.  SYN-SENT CLOSED
+  6.  SYN-SENT                                         CLOSED
 
-7.  SYN-SENT --> <SEQ=400><CTL=SYN> -->
+  7.  SYN-SENT --> <SEQ=400><CTL=SYN>              -->
 
-                   Half-Open Connection Discovery
+                     Half-Open Connection Discovery
 
-                             Figure 10.
-
-```
-
+                               Figure 10.
 ```
