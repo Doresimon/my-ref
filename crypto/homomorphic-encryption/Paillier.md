@@ -8,6 +8,8 @@ author: `Pascal Paillier`
 
 keywords: `asymmetric algorithm`, `n-th residue classes`, `homomorphic`
 
+base on: `integer factorization`
+
 ## intro
 
 ### key generation
