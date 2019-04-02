@@ -1,4 +1,4 @@
-
+#include <iostream>
 
 int partition(int *arr, int left, int right);
 int quickSort(int *arr, int left, int right);
@@ -46,4 +46,17 @@ int partition(int *arr, int left, int right)
     arr[i] = x;
 
     return 0;
+}
+
+int main()
+{
+    int arr[10] = {0, 9, 1, 8, 2, 7, 3, 6, 4, 5};
+    quickSort(arr, 0, 9);
+
+    std::cout << "[";
+    for (auto &&i : arr)
+    {
+        std::cout << arr[i] << ", ";
+    }
+    std::cout << "]" << endl;
 }
