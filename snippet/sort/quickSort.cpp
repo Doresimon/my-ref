@@ -1,17 +1,23 @@
 #include <iostream>
 
+using namespace std;
+
 int partition(int *arr, int left, int right);
 int quickSort(int *arr, int left, int right);
 
-int quickSort(int *arr, int left, int right)
+int main()
 {
-    if (right > left)
-    {
-        int mid = partition(arr, left, right);
+    int arr[10] = {10, 9, 8, 7, 6, 5, 4, 3, 2, 1};
+    quickSort(arr, 0, 9);
 
-        quickSort(arr, left, mid - 1);
-        quickSort(arr, mid + 1, right);
+    std::cout << "[";
+    for (auto var : arr)
+    {
+        std::cout << var << ", ";
     }
+    std::cout << "]" << endl;
+
+    return 0;
 }
 
 int partition(int *arr, int left, int right)
@@ -31,6 +37,11 @@ int partition(int *arr, int left, int right)
             {
                 arr[j] = arr[i];
                 j--;
+                asc = false;
+            }
+            else
+            {
+                i++;
             }
         }
         else
@@ -39,24 +50,29 @@ int partition(int *arr, int left, int right)
             {
                 arr[i] = arr[j];
                 i++;
+                asc = true;
+            }
+            else
+            {
+                j--;
             }
         }
     }
 
-    arr[i] = x;
+    arr[i] = x; // put x back
 
-    return 0;
+    return i;
 }
 
-int main()
+int quickSort(int *arr, int left, int right)
 {
-    int arr[10] = {0, 9, 1, 8, 2, 7, 3, 6, 4, 5};
-    quickSort(arr, 0, 9);
-
-    std::cout << "[";
-    for (auto &&i : arr)
+    if (right > left)
     {
-        std::cout << arr[i] << ", ";
+        int mid = partition(arr, left, right);
+
+        quickSort(arr, left, mid - 1);
+        quickSort(arr, mid + 1, right);
     }
-    std::cout << "]" << endl;
+
+    return 0;
 }
