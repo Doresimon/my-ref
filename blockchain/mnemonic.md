@@ -29,7 +29,7 @@
 
    - 随机生成熵(Entropy), 128-256 bits, (16-32) bytes, 步长 32 bits
    - ENT.length := Entropy 的 bits 长度
-   - CS := ENT.length/32 (checksum)
+   - CS := SHA256(ENT).split(0, ENT.length/32) (checksum)
    - MS.length := (ENT + CS).length/11 (mnemonic sentence length)
 
      ```
@@ -48,6 +48,32 @@
      |  256  |  8 |   264  |  24  |
      ```
 
+   - detail
+
+     ```
+          128-bits entropy/12-words
+
+          Rand Entropy(128 bits) ------>     SHA256
+
+                                                |
+                                              first 4 bits
+                                                |
+
+          |+++ Entropy(128 bits) +++|+++ checksum(4 bits) +++|
+
+                                    |
+                split 132-bits into 12 segments of 11-bits each
+                                    |
+
+                  |++|++|++|++|++|++|++|++|++|++|++|++|
+
+                                    |
+                    map 11bits to word, with dictionary
+                                    |
+
+      |word|word|word|word|word|word|word|word|word|word|word|word|
+     ```
+
 2. 11 bits code ==> word
 
 3. mnemonic ==> seed
@@ -56,7 +82,7 @@
    - PBKFD2(passphare, salt, iv, hashFunc, dkLen)
    - passphare := MS
    - salt = MS || password, password is input by user, default is ""
-   - iv := 2048, predefined
+   - rounds := 2048, for hashFunc
    - hashFunc := HMAC-SHA512
    - dkLen := 512, in bits
 
