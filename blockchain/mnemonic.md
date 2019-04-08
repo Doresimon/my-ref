@@ -79,11 +79,37 @@
 3. mnemonic ==> seed
 
    - 助记词生成 seed, 进而生成私钥
-   - PBKFD2(passphare, salt, roundNum, hashFunc, dkLen)
+   - PBKFD2(passphare, salt, roundNum, hashFunc, dkLen) [@PBKFD2](../crypto/key-derivation-function/PBKDF.md)
    - passphare := MS
-   - salt = MS || password, password is input by user, default is ""
+   - salt = "mnemonic"+password, password is input by user, default is ""
    - roundNum := 2048, for hashFunc's iteration
    - hashFunc := HMAC-SHA512
    - dkLen := 512 bits = 64 bytes
 
+   ```
+    mnemonic = "word1 word2 ... word12"
+
+    salt = `mnemonic${password}`
+
+    seed = pbkdf2(mnemonic, salt, 2048, "SHA512", 64) = {
+      PRF = HMAC-SHA512(pass, msg) = {
+        K = SHA512(pass) // if K.length > 512
+        K = pass // if K.length <= 512
+        return SHA512(K^opad || SHA512(K^ipad||msg))
+      }
+
+      Ti = F(mnemonic, salt, c = 2048, i) = {
+        U1 = PRF(mnemonic, salt || INT_32_BE(i))
+        U2 = PRF(mnemonic, U1)
+        ...
+        Uc = PRF(mnemonic, U(c-1))
+        return U1^U2...^Uc
+      }
+
+      return DK = T1 || T2 ... || T(dkLen/hLen)
+    }
+   ```
+
 4. seed ==> keys
+
+   use CKD(Child Key Derivation)
