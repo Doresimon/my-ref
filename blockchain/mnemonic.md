@@ -79,11 +79,11 @@
 3. mnemonic ==> seed
 
    - 助记词生成 seed, 进而生成私钥
-   - PBKFD2(passphare, salt, iv, hashFunc, dkLen)
+   - PBKFD2(passphare, salt, roundNum, hashFunc, dkLen)
    - passphare := MS
    - salt = MS || password, password is input by user, default is ""
-   - rounds := 2048, for hashFunc
+   - roundNum := 2048, for hashFunc's iteration
    - hashFunc := HMAC-SHA512
-   - dkLen := 512, in bits
+   - dkLen := 512 bits = 64 bytes
 
 4. seed ==> keys
