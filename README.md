@@ -12,7 +12,7 @@ so many `.md` files~~
 
 ### Oblivious Transfer
 
-### Pairinig Based Crypto
+### Pairing Based Crypto
 
 ### Protocol
 
