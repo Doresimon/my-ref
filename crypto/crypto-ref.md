@@ -53,3 +53,11 @@ A useful website of Hyper Elliptic.
 ## [Accumulator wiki](https://en.wikipedia.org/wiki/Accumulator_(cryptography))
 
 ## [Lamport one-time signature scheme](https://en.wikipedia.org/wiki/Lamport_signature)
+
+# Good book
+
+## [HAC](http://cacr.uwaterloo.ca/hac/)
+
+
+[HAC]: Handbook of Applied Cryptography Menezes, van Oorschot, Vanstone.
+http://cacr.uwaterloo.ca/hac/
